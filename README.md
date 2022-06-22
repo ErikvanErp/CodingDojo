@@ -1,0 +1,1 @@
+This repository contains assignments for the Coding Dojo bootcamp (Summer 2022)
