@@ -1,0 +1,29 @@
+button {
+    margin: 0.5em
+}
+#search {
+    color: teal;
+    height:2em;
+    border: 0.2em solid teal;
+    border-radius: 1em;
+    padding: 0.2em 3em;
+}
+#plus {
+    height: 1.5em;
+    width: 1.5em;
+    color: white;
+    background-color: #00b377;
+    border: 1px solid #00b377;
+    border-radius: 50%;
+    font-size: 1.5em;
+}
+#newaccount {
+    height: 2em;
+    color: white;
+    background-color: royalblue;
+    border: 2px solid black;
+    padding: 0 2em;
+    box-shadow: 0.2em 0.2em black;
+    font-size: large;
+    font-weight: lighter;
+}
