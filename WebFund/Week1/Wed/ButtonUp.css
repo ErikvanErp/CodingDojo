@@ -2,9 +2,10 @@ button {
     margin: 0.5em
 }
 #search {
-    color: teal;
+    color: rgb(31, 155, 156);
+    background-color: rgb(245, 245, 245);
     height:2em;
-    border: 0.2em solid teal;
+    border: 0.2em solid rgb(31, 155, 156);
     border-radius: 1em;
     padding: 0.2em 3em;
 }
@@ -12,15 +13,15 @@ button {
     height: 1.5em;
     width: 1.5em;
     color: white;
-    background-color: #00b377;
-    border: 1px solid #00b377;
+    background-color: rgb(34, 208, 178);
+    border: 1px solid rgb(34, 208, 178);
     border-radius: 50%;
     font-size: 1.5em;
 }
 #newaccount {
     height: 2em;
     color: white;
-    background-color: royalblue;
+    background-color: rgb(49,123,225);
     border: 2px solid black;
     padding: 0 2em;
     box-shadow: 0.2em 0.2em black;
