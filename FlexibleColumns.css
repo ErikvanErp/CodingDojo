@@ -1,0 +1,20 @@
+.row{
+    display: flex;
+    column-gap:20px;
+}
+.col, .col-2, .col-3 {
+    color: white;
+    justify-content: space-evenly;
+    margin:15px 0;
+    padding:20px;
+    background-color: rgb(100,163,171);
+}
+.col{
+    flex:1;
+}
+.col-2{
+    flex:2;
+}
+.col-3{
+    flex:3;
+}
