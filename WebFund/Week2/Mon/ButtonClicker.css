@@ -1,0 +1,102 @@
+* {
+    margin:0;
+    padding:0;
+    outline:0;
+}
+* {
+    font-family: sans-serif;
+}
+
+#header {
+    width:470px;
+    height: 50px;
+    vertical-align: center;
+    /* display: inline-block; */
+    margin: auto;
+    background-color:silver;
+    margin-bottom: 20px;
+    padding:5px 15px 0 15px;
+}
+#header h1 {
+    position:relative;
+    top:4px;
+    font-size: 30px;
+    font-weight: 400;
+    display:inline-block;
+}
+#header input {
+    width: 160px;
+    padding: 2px;
+    margin-left:50px;
+}
+#header button {
+    padding:3px 9px;
+    margin-left: 60px;
+    color: white;
+    background-color: rgb(59,116,225);
+}
+.main {
+    width:500px;
+    margin: auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.box1 {
+    width: 282px;
+    height: 105px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color:yellow; */
+}
+.box2 {
+    width:130px;
+    height: 75px;
+    /* background-color:green; */
+}
+.box1, .box2 {
+    border: 2px solid black;
+    padding: 15px;
+}
+
+.box1 a {
+    color:rgb(59,116,225);
+}
+.leftbox{
+    font-size: 12px;
+    flex:1.2;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.rightbox{
+    font-size: 15px;
+    margin-left: 20px;
+    flex:3;
+}
+.leftbox h1{
+    font-size: 30px;
+    font-weight:400
+}
+.leftbox h2{
+    font-size: 15px;
+    font-weight:400;
+    margin-bottom: 3px;
+}
+button {
+    border: 2px solid  black;
+    box-shadow: 3px 3px black;
+}
+.box2 button{
+    margin-top: 15px;
+    padding: 3px 20px;
+    background-color: rgb(146,196,128);
+}
+.box1 button{
+    margin-top: 15px;
+    padding: 3px 12px;
+    background-color: rgb(253,219,112);
+}
