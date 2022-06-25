@@ -1,0 +1,70 @@
+/* CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+      
+/* Fixed width container class that will "auto-center" itself */
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+  
+/* button style with rounded left-right edges */
+.btn {
+    margin: 0.5em;
+    color: rgb(31, 155, 156);
+    background-color: rgb(245, 245, 245);
+    height:2em;
+    border: 0.2em solid rgb(31, 155, 156);
+    border-radius: 1em;
+    padding: 0.2em 3em;
+}
+.row {
+    display: flex;
+    column-gap:20px;
+}
+.col {
+    color: white;
+    justify-content: space-evenly;
+    margin:15px 0;
+    padding:20px;
+    background-color: rgb(100,163,171);
+}
+
+/* navbar styles from Flex Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding:10px 20px;
+    color: white;
+    background-color: rgb(51,51,51);
+    font-family: Roboto, sans-serif;
+    font-weight: 100;
+}
+.navbar a{
+    color:white;
+    text-decoration: none;
+}
+.nav-links{
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.navbar-links li {
+    padding-left:30px;
+}
+.navbar .btn {
+    background-color: rgb(23,162,184);
+    border: 1px solid black;
+    box-shadow: 5px 5px black;
+}
+.navbar h1 {
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
