@@ -22,12 +22,12 @@
 .nav-links li {
     padding-left:30px;
 }
-.btn {
+.nav .btn {
     background-color: rgb(23,162,184);
     border: 1px solid black;
     box-shadow: 5px 5px black;
 }
-h1 {
+.nav h1 {
     font-weight: normal;
     margin-top: 0;
     margin-bottom: 0;
