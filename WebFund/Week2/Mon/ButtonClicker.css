@@ -8,59 +8,53 @@
 }
 
 #header {
-    width:470px;
+    width:500px;
     height: 50px;
-    vertical-align: center;
-    /* display: inline-block; */
-    margin: auto;
-    background-color:silver;
+    margin: 0 auto;
     margin-bottom: 20px;
-    padding:5px 15px 0 15px;
+    padding: 5px 15px;
+    background-color:silver;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
 }
 #header h1 {
-    position:relative;
-    top:4px;
     font-size: 30px;
     font-weight: 400;
-    display:inline-block;
 }
 #header input {
-    width: 160px;
-    padding: 2px;
-    margin-left:50px;
+    width: 200px;
+    padding: 3px;
 }
 #header button {
     padding:3px 9px;
-    margin-left: 60px;
+    height: 2em;
     color: white;
     background-color: rgb(59,116,225);
 }
 .main {
-    width:500px;
-    margin: auto;
+    width:530px;
+    margin: 0 auto;
     display:flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 .box1 {
-    width: 282px;
+    width: 312px;
     height: 105px;
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color:yellow; */
 }
 .box2 {
     width:130px;
     height: 75px;
-    /* background-color:green; */
 }
 .box1, .box2 {
     border: 2px solid black;
     padding: 15px;
 }
-
 .box1 a {
     color:rgb(59,116,225);
 }
@@ -74,7 +68,7 @@
 }
 .rightbox{
     font-size: 15px;
-    margin-left: 20px;
+    padding:20px;
     flex:3;
 }
 .leftbox h1{
