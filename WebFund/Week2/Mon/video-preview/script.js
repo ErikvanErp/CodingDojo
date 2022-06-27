@@ -1,3 +1,4 @@
+
 console.log("page loaded...");
 
 function videoPlay(element){
