@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="likes.css">
+    <script type="text/javascript" src="likes.js" defer></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header1">
+            <h1>Network</h1>
+        </div>
+
+        <div class="header2">
+            <h1>Your Feed</h1>
+        </div>
+    
+        <div class="main">
+    
+            <div class="col1">
+                <div class="you">
+                    <img src="img/user-circle.png" alt="user picture">
+                    <p><a href="#">Add an avatar</a></p>
+                    <h2>James Doe</h2>
+                </div>
+            </div>     
+
+            <div class="col2">
+
+                <div class="user-card">
+                    <div class="card-header">
+                        <h2>Neil M</h2>
+                        <div>
+                            <span id="numlikes1">9 like(s)</span>
+                            <button class="btn" onclick="increase(1)">Like</button>
+                        </div>
+                    </div>
+                    <div class="card-main">
+                        I just set up this discord bot, let me know what you all think. <a href="#">link</a>
+                    </div>
+                </div>
+
+                <div class="user-card">
+                    <div class="card-header">
+                        <h2>Nichole K</h2>
+                        <div>
+                            <span id="numlikes2">12 like(s)</span>
+                            <button class="btn" onclick="increase(2)">Like</button>
+                        </div>
+                    </div>
+                    <div class="card-main">
+                        Just finished my <a href="#">next comic</a>, check it out.
+                    </div>
+                </div>
+
+                <div class="user-card">
+                    <div class="card-header">
+                        <h2>Jim R</h2>
+                        <div>
+                            <span id="numlikes3">9 like(s)</span>
+                            <button class="btn" onclick="increase(3)">Like</button>
+                        </div>
+                    </div>
+                    <div class="card-main">
+                        I can't stop listening to the <a href="#">new album</a>. Who else is liking it?
+                    </div>
+                </div>
+                
+            </div>
+        
+        </div>
+    </div>
+
+</body>
+</html>
