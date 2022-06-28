@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    border: 0;
+    /* utline: 0; */
+}
+* {
+    font-family: 'Roboto', sans-serif;
+}
+a {
+    color:#0557c0;
+}
+.header{
+    /* height: 100px; */
+    color: white;
+    background-color: rgb(162,195,246);
+}
+.navbar, .main {
+    width: 700px;
+    margin: 0 auto;
+}
+.navbar {
+    /* width: 700px;
+    margin: 0 auto; */
+    padding: 20px 0;
+    font-size: 25px;
+    display:flex;
+    justify-content: space-between;
+    align-content: center;
+}
+.cities {
+    width:350px;
+    list-style-type: none;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main {
+    margin-top: 10px;
+}
+.row1{
+    padding:20px 0;
+    font-size:20px;
+    border-bottom: 3px solid black;
+    display:flex; 
+    justify-content: space-between;
+    align-items: center; 
+}
+.row1 h2 {
+    font-size: 30px;
+    font-weight: 500;
+} 
+.row1 select {
+    font-size: 20px;
+    width: 60px;
+    height: 30px;
+    border: 1px solid black;
+}
+.row2{
+    margin-top: 25px;
+    display:flex; 
+    justify-content: space-between; 
+    gap: 25px;
+}
+.day{
+    background-color: rgb(238, 238, 238);
+    height: 300px;
+    flex:1;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.day > *{
+    margin:10px 0;
+}
+.day img{
+    width:80%;
+    border-radius:50%;
+}
+.day h3 {
+
+    font-size: 25px;
+    font-weight: 400;
+}
+.day h4 {
+    font-size: 20px;
+    font-weight: 400;
+}
+.temperature{
+    width:80%;
+    font-size: 28px;
+    font-weight: 700;
+    display:flex;
+    justify-content: space-between;
+}
+.high {
+    color: rgb(206,54,47);
+}
+.low{
+    color:rgb(59,116,225)
+}    
+.row3 {
+    width: 653px;
+    border: 3px solid black;
+    margin-top:10px;
+    padding:15px 20px;
+    background-color: rgb(238, 238, 238);
+    position:fixed;
+    bottom:5px;
+    /* right:275px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.row3 h1{
+    font-size: 25px;
+}
+.row3 button{
+    width:200px;
+    height: 35px;
+    border: 2px solid black;
+    box-shadow: 3px 3px;
+    font-size: 20px;
+    background-color: rgb(162,195,246);
+}
+
+
