@@ -1,0 +1,76 @@
+/*************/
+/* CSS reset */
+/*************/
+* {
+    margin:0;
+    border:0;
+}
+/******************/
+/* Overall Layout */
+/******************/
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.header {
+    color: white;
+    /* background-color: silver; */
+}
+.nav, .main, .footer{
+    width:800px;
+    margin: 0 auto;
+}
+.main, .footer {
+    border: 1px dashed red; /* remove when done*/
+    margin: 0 auto;
+}
+.nav{
+    height: 100px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main {
+    margin-bottom: 20px;
+}
+.row {
+    height: 100px;
+}
+.footer {
+    height: 50px;
+}
+
+/**************************/
+/* navigation bar details */
+/**************************/
+.nav img {
+    transform: scaleX(-1);
+}
+.searchbox {
+    border: 2px solid black;
+    border-radius: 50%;
+    /* padding-right: 500px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchbox img {
+    height: 1rem;
+}
+.nav h1 {
+    color: white;
+}
+.nav h1 span {
+    color: red;
+}
+
+
+
+/******************/
+/* button styling */
+/******************/
+.btn {
+    border: 2px solid black;
+    box-shadow: 4px 4px;
+    padding: 5px 20px;
+}
