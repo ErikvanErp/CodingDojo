@@ -69,8 +69,33 @@ var array = [-4, 5, 7, 0, 3];
 stats = arrayStats(array);
 console.log(`Max is ${stats.max}; min is ${stats.min}; average is ${stats.avg}`);
 
-// swap string for array negative values
 
-// function swapNegatives(arr, str){
+// square each value in a given array, returning that same array with changed values
 
-// }
+function squareArray(arr){
+    for(var i=0; i<arr.length; i++){
+        arr[i] = arr[i] ** 2;
+    }
+    return arr;
+}
+
+array2 = [-1, 3, -4, 2, 56, 0];
+squareArray(array2);
+console.log(array2);
+console.log(squareArray(array2));
+
+// shift array values
+// given an array, move all values forward by one index, 
+// dropping the first and leaving a "0" value at the end
+
+function shiftArray(arr){
+    for(var i=0; i<arr.length - 1; i++){
+        arr[i] = arr[i+1];
+    }
+    arr[i] = 0;
+    return arr;
+}
+array3 = [-1, 3, -4, 2, 56, 0];
+shiftArray(array3);
+console.log(array3);
+console.log(shiftArray(array3));
