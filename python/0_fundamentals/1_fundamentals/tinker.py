@@ -1,9 +1,19 @@
-def multiply(num_list, num):
-    for x in num_list:
-        x *= num
-    return num_list
-a = [2,4,10,16]
-b = multiply(a,5)
-print(b)
+d = {
+    "a":1, 
+    "b":2
+}
 
+e = {
+    "c":300,
+    "b":200
+}
 
+d.update(e);
+
+for k, v in d.items():
+    print(f"{k} : {v}")
+
+for item in d.items():
+    print(item)
+
+print(type(d.values()))
