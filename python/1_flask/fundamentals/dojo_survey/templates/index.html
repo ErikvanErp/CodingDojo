@@ -5,38 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dojo survey</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <div class="container">
-        <form action="/process" method="POST">
-            <div>
-                <label for="name">Your Name:</label>
-                <input type="text" name="name" id="name">
-            </div>
-            <div>
-                <label for="location">Dojo Location:</label>
-                <select name="location" id="location">
-                    <option value="Online">Online</option>
-                    <option value="los Angeles">Los Angeles, CA</option>
-                    <option value="Silicon Valley">Silicon Valley, CA</option>
-                </select>
-            </div>
-            <div>
-                <label for="language">Favorite language:</label>
-                <select name="language" id="language">
-                    <option value="Python">Python</option>
-                    <option value="Javascript">Javascript</option>
-                    <option value="C">C</option>
-                    <option value="Java">Java</option>
-                </select>
-            </div>
-            <div>
-                <label for="comment"> Comment (optional):</label>
-                <input type="textarea" name="comment" id="comment">
-            </div>
+    <div class="container mt-3 border rounded-2 p-3 bg-light">
+        <div class="row ">
+            <div class="col">
 
-            <input type="submit" value="Submit">
-        </form>
+                <form action="/process" method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Your Name:</label>
+                        <div>
+                            <input type="text" name="name" id="name" class="form-control">
+                        </div>
+                    </div>
+                    <div  class="mb-3">
+                        <label for="location" class="col-form-label">Dojo Location:</label>
+                        <div>
+                            <select name="location" id="location" class="form-select">
+                                <option>Online</option>
+                                <option>Los Angeles, CA</option>
+                                <option>Silicon Valley, CA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div  class="mb-3">
+                        <label for="language" class="col-form-label">Favorite language:</label>
+                        <div>
+                            <select name="language" id="language" class="form-select">
+                                <option>Python</option>
+                                <option>Javascript</option>
+                                <option>C</option>
+                                <option>Java</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div  class="mb-3">
+                        <label for="comment" class="form-label">Comment (optional):</label>
+                        <textarea name="comment" id="comment" class="form-control" rows="4"></textarea>
+                    </div>
+        
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
     </div>
 </body>
 </html>
