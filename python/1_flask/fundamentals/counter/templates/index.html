@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #333;
+        }
+        .container, .description, .button {
+            width: 280px;
+            margin: 0 auto;
+            margin-top: 20px;
+            /* padding: 40px; */
+        }
+        .container {
+            height: 280px;
+            background-color: #222;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+        .container > * {
+            color: #eee;
+        }
+        h1 {
+            font-size: 30px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 20px;
+            font-weight: 400;
+            text-align: center;
+        }
+        p {
+            font-size: 12px;
+            font-weight: 400;
+            text-align: center;
+        }
+        a {
+            text-decoration: None;
+            width: 180px;
+            margin: 0 auto;
+            border-radius: 15px;
+            border: 1px solid #222; 
+            padding: 5px 15px;
+            background-color: #eee;   
+            color: #222;    
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Counter</h1>
+        <h2>{{session['count']}} times</h2>
+    </div>
+    <div class="description">
+        <p>
+            The counter goes up each time the page reloads.<br>
+            The counter is stored in a cookie, named "session".<br>
+            If the page is open in two tabs, both are counted.<br>
+            Closing the browser tab does not reset the counter,<br>
+            but if you quit the browser, the cookie is lost.
+        </p>
+    </div>
+    <div class="button">
+        <p>
+
+            <a href="/destroy_session">Clear session</a>
+        </p>
+    </div>
+</body>
+</html>
