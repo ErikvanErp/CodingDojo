@@ -1,1 +1,1 @@
-export PATH=${PATH}:/usr/local/mysql/bib
+export PATH=${PATH}:/usr/local/mysql/bin
