@@ -1,0 +1,14 @@
+select * from names;
+
+insert into names (name) values ("Erik van Erp");
+
+insert into names (name) values ("Peter the Great"), ("Hannah Ahrendt"), ("Friedrich Nietzsche");
+
+set sql_safe_updates = 0;
+delete from names
+where name like "Erik%"; 
+set sql_safe_updates = 1;
+
+update names
+set name = "Peter was not so Great after all"
+where id = 2;

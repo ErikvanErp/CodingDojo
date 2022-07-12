@@ -1,20 +1,20 @@
 // given an array of integers 
 // return the integer that occurs an odd number of times
-// the array will have at least 3 items in items
+// the array will have at least 3 items
 
 function arrayOddOccurrences(arr){
     var values = {};
 
     for (var i=0; i < arr.length; i++){
-        if (values[arr[i]] != undefined){
-            values[arr[i]]++;
+        if (values[arr[i]]){
+            values[arr[i]] ++;
         }
         else {
             values[arr[i]] = 1;
         }
     }
 
-    for (var j in values){
+    for (let j in values){
         if(values[j] % 2 == 1){
             return j;
         }
