@@ -1,0 +1,28 @@
+INSERT INTO users
+(first_name, last_name, email)
+VALUES
+("Dirk", "De Groot", "dirk@gmail.com"),
+("Tanya", "Coccaro", "tcoccaro@hotmail.com"),
+("Keanu", "Reeves", "kr@keanureeves.com");
+
+select * from users;
+
+SELECT * FROM users
+WHERE email = 'dirk@gmail.com';
+
+SELECT * FROM users
+WHERE id = 3;
+
+UPDATE users
+SET last_name = 'Pancakes'
+WHERE id = 3;
+
+DELETE FROM users
+WHERE id = 2;
+
+SELECT * FROM users
+ORDER BY first_name DESC; 
+
+SELECT dojos.id, dojos.name FROM dojos 
+JOIN ninjas ON dojos.id = ninjas.dojo_id 
+WHERE ninjas.id = 12;
