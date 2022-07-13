@@ -1,0 +1,21 @@
+1. remove "import pymysql.cursors" from line 1
+
+pymysql.connect(.....)
+NameError: name 'pymysql' is not defined
+
+2. in pymysql.connect, wrong host = '...'
+
+Can't connect to MySQL server on 'localhost1' 
+([Errno 8] nodename nor servname provided, or not known)
+
+3. in pymysql.connect, wrong user = '..' or password = '..'
+
+Access denied for user 'root1'@'localhost'
+
+4. remove self.connection = connection
+
+'MySQLConnection' object has no attribute 'connection'
+
+
+
+
