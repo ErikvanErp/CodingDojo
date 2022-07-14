@@ -1,8 +1,6 @@
-from flask import Flask, render_template, request, redirect
-
-from users import User
-
-app = Flask(__name__)
+from flask import render_template, request, redirect
+from flask_app import app
+from flask_app.models.user import User
 
 @app.route("/")
 def readall():
@@ -34,7 +32,3 @@ def update_user():
 def delete_user(user_id):
     User.delete(user_id)
     return redirect('/')
-
-if __name__ == "__main__":
-    app.run(debug=True, port=5001)
-
