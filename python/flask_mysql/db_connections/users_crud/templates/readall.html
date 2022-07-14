@@ -30,12 +30,17 @@
                     <td>{{ user.full_name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.created_at.strftime("%B %d, %Y") }}</td>
+                    <td>
+                        <a href="/user/show/{{ user.id }}">Show</a> |
+                        <a href="/user/edit/{{ user.id }}">Edit</a> |
+                        <a href="/user/delete/{{ user.id }}">Delete</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     
-        <a href="/add_user" class="btn btn-primary">Add a New User</a>
+        <a href="/user/add" class="btn btn-primary">Add a New User</a>
         
     </div>
 </body>

@@ -13,7 +13,7 @@
 
     <div class="container mt-3">
         <h1 class="text-center">Add User</h1>
-        <form action="/create_user" method="post" class="col-6 mx-auto">
+        <form action="/user/insert" method="post" class="mx-auto">
             <div class="form-group">
                 <label for="fname">First Name:</label>
                 <input type="text" name="fname" id="fname" class="form-control">
@@ -29,6 +29,8 @@
     
             <input type="submit" value="Add User" class="btn btn-primary">
         </form>
+        <a href="/" class="btn btn-primary">Home</a>
     </div>
+
 </body>
 </html>
