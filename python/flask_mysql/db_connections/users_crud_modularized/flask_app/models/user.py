@@ -20,10 +20,10 @@ class User():
         return users
 
     @classmethod
-    def insert(cls, form):
+    def insert(cls, data):
         query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES ( %(fname)s, %(lname)s, %(email)s, NOW(), NOW() );"
                 
-        return connectToMySQL('users').query_db(query, form)
+        return connectToMySQL('users').query_db(query, data)
 
     @classmethod
     def read(cls, user_id):
