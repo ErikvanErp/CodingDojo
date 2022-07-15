@@ -10,7 +10,6 @@ class User():
         self.books = []
 
 
-
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM users"
@@ -26,7 +25,7 @@ class User():
     # complete with all favorited books
     @classmethod
     def get_by_id(cls, user_id):
-        query = "SELECT * FROM users LEFT JOIN favorites ON users.id = favorites.user_id LEFT JOIN books ON favorites.book_id = books.id WHERE users.id = %(user_id)s;"
+        query = "SELECT * FROM users LEFT JOIN favorites ON users.id = favorites.user_id LEFT JOIN books ON favorites.book_id = books.id WHERE users.id = %(user_id)s ORDER BY title;"
         data = {
             "user_id" : user_id
         }
@@ -55,8 +54,8 @@ class User():
         new_id = connectToMySQL('books').query_db(query, data)
         
 
-    @classmethod
-    def add_favorite(cls, user_id, book_id):
+    @staticmethod
+    def add_favorite(user_id, book_id):
         query = "INSERT INTO favorites (user_id, book_id) VALUES (%(user_id)s, %(book_id)s);"
         data = {
             'user_id' : user_id,

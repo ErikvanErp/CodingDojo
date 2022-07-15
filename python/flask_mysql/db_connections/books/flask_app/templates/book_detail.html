@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-3">
+        <div class="row mx-auto">
+            
+            <div class="col col-sm-12 col-md-6">
+                <div class="row">
+                    <h1>Title: {{book.name}}</h1>
+                    
+                    {% if book.users|length == 0 %}
+                    <p>No users favorite this book.</p>
+                    {% else %}
+                    <p>Favorited by:</p>                    
+                    <ul class="list-group">
+                    {% for user in book.users %}
+                        <li class="list-group-item">{{ user.name }}</li>
+                    {% endfor %}
+                    </ul>    
+                    
+                    {% endif %}
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col d-md-block">
+                        <a href="/" class="btn btn-outline-primary">Home</a>
+                    </div>
+                </div>
+            </div>
+
+            {% if users|length != 0 %}
+
+            <div class="col col-sm-12 col-md-6">
+                <div class="row">
+                    <h1>Add Book's Favorite</h1>
+                    <form action="/book/add_fav/{{ book.id }}" method="post">
+                        <label for="authors">Book:</label>
+                        <select name="user_id" id="authors">
+                            {% for user in users %}
+                            <option value={{ user.id }}>{{ user.name }}</option>
+                            {% endfor %}
+                        </select><br>
+                        <input type="submit" class="btn btn-outline-primary mt-3" value="Add">
+                    </form>
+                </div>
+            </div>
+            
+            {% endif %}
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -7,7 +7,7 @@ def users_get_all():
     return render_template("users.html", users=user.User.get_all())
 
 @app.route('/user/add', methods=['POST'])
-def dojos_create():
+def users_create():
     data = {
         'name' : request.form['name']
         }
@@ -17,7 +17,7 @@ def dojos_create():
 
 
 @app.route('/user/show/<int:user_id>')
-def dojos_show(user_id):
+def users_show(user_id):
     this_user=user.User.get_by_id(user_id)
     all_books=book.Book.get_all()
     
@@ -38,11 +38,8 @@ def dojos_show(user_id):
 
 
 @app.route('/user/add_fav/<user_id>', methods=['POST'])
-def add_favorite(user_id):
-    for x in request.form:
-        print("in request form: ", x)
-    print(request.form['book_id'])
+def users_add_favorite(user_id):
 
     user.User.add_favorite(user_id, request.form['book_id'])
     
-    return redirect(f'/user/show/user_id/{user_id}')
+    return redirect(f'/user/show/{user_id}')
