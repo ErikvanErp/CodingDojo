@@ -1,48 +1,35 @@
-// determine whether string_a is an anagram of string_b
-// i.e., both string contain the same characters (counting w multiplicity)
-// spaces are not counted; 
-// the function should not be case sensitive
-
+// isanagram determines whether string_a is an anagram of string_b
+// i.e., both strings contain the same characters with the same multiplicities
+// Spaces are ignored, but other special characters are not; 
+// The comparison is not case sensitive
 function isAnagram(string_a, string_b) {
+  let frequencies_a = frequenceTable(string_a.toLowerCase())
+  let frequencies_b = frequenceTable(string_b.toLowerCase())
 
-  // input sanitizing
-  string_a = string_a.toLowerCase().replaceAll(" ", "");
-  string_b = string_b.toLowerCase().replaceAll(" ", "");
-
-  if(string_a.length != string_b.length){
+  if (Object.keys(ferquencies_a).length != Object.keys(frequencies_b).length) {
     return false;
   }
 
-  let object_a = {}
-  let object_b = {}  
-
-  for(var i = 0; i < string_a.length; i++){
-    if(object_a[string_a[i]]){
-      object_a[string_a[i]]++;
-    }
-    else{
-      object_a[string_a[i]] = 1;
-    }
-
-    if(object_b[string_b[i]]){
-      object_b[string_b[i]]++;
-    }
-    else{
-      object_b[string_b[i]] = 1;
-    }
-  }
-
-  // checks for same number of keys
-  if(Object.keys(object_a).length != Object.keys(object_b).length){
-    return false;
-  }
-
-
-  // checks characters and values
-  for (const character in object_a){
-
-    if(object_a[character] != object_b[character]){
+  for (const character in frequencies_a) {
+    if (frequencies_a[character] != frequencies_b[character]) {
       return false;
     }
   }
+  return True
+}
+
+// Count how often each character occurs in a given array
+// Do not count spaces
+function frequenceTable(arr) {
+  var frequencies = {}
+  for (var i = 0; i < arr.length; i++) {
+    if (frequencies[arr[i]]) {
+      frequencies[arr[i]]++;
+    }
+    else if (arr[i] != " "){
+      frequencies[arr[i]] = 1;
+    }
+  }
+  return frequencies
+}
 
