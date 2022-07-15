@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-3">
+        <div class="row mx-auto">
+            
+            <div class="col col-sm-12 col-md-6">
+                <div class="row">
+                    <h1>{{user.name}}'s favorites</h1>
+                    
+                    {% if user.books|length == 0 %}
+                    <p>No books found for this author.</p>
+                    {% else %}
+                    
+                    <table class="table table-striped">
+                        <thead>
+                            <th>Title</th>
+                            <th># of pages</th>
+                        </thead>
+                        <tbody>
+                            {% for book in user.books %}
+                            <tr>
+                                <td>{{ book.title }}</td>
+                                <td>{{ book.num_of_pages }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    {% endif %}
+                </div>
+
+                <div class="row">
+                    <div class="col d-md-block">
+                        <a href="/" class="btn btn-outline-primary">Home</a>
+                    </div>
+                </div>
+            </div>
+
+            {% if books|length != 0 %}
+
+            <div class="col col-sm-12 col-md-6">
+                <div class="row">
+                    <h1>Add Author's Favorite</h1>
+                    <form action="/user/add_fav/{{ user.id }}" method="post">
+                        <label for="booktitles">Book:</label>
+                        <select name="book_id" id="booktitles">
+                            {% for book in books %}
+                            <option value={{ book.id }}>{{ book.title }}</option>
+                            {% endfor %}
+                        </select><br>
+                        <input type="submit" class="btn btn-outline-primary mt-3" value="Add">
+                    </form>
+                </div>
+            </div>
+            
+            {% endif %}
+        </div>
+        
+    </div>
+</body>
+</html>
