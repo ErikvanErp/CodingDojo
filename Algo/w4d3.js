@@ -11,16 +11,11 @@ function bookIndex(pages) {
     var sequence_list = [];
   
     for(let i = 0; i < pages.length; i++){
-      if(sequence.length == 0){
-        sequence.push(pages[i]);
-      }
-      else if(sequence[sequence.length - 1] + 1 == pages[i]){
-        sequence.push(pages[i]);
-      }
-      else{
+      if(sequence.length != 0 && sequence[sequence.length - 1] + 1 != pages[i]){
         sequence_list.push(sequence);
-        sequence = [pages[i]];
+        sequence = [];
       }
+      sequence.push(pages[i]);
     }
     sequence_list.push(sequence);
 
@@ -31,10 +26,10 @@ function bookIndex(pages) {
       else{
         output += sequence_list[j][0] + "-" + sequence_list[j][sequence_list[j].length - 1];
       }
+
       if (j != sequence_list.length - 1){
         output += ", ";
       }
-
     }
     
     return output;
