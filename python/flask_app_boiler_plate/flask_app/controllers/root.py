@@ -1,10 +1,8 @@
-from flask import Flask
-from flask import render_template, session
-#from flask import request, redirect
+from flask import render_template, request, redirect, session
 
 from flask_app import app
 # import models, as necessary
-# from flask_app.models import 
+# from flask_app.models import ..
 
 @app.route('/')
 def index():
