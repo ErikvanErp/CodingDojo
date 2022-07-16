@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo survey</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container mt-3 border rounded-2 p-3 bg-light">
+        <div class="row ">
+            <div class="col">
+
+                <form action="/survey/add" method="POST">
+                    <h1>Dojo Survey</h1>
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Your Name:</label>
+                        <div>
+                            <input type="text" name="name" id="name" class="form-control" value = "{{ session['name'] }}">                            
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="col-form-label">Dojo Location:</label>
+                        <div>
+                            <select name="location" id="location" class="form-select">
+                                <option value="-1">Select a location</option>
+                                <option {% if session.location == "Online" %} selected {% endif %}>Online</option>
+                                <option {% if session.location == "Los Angeles, CA" %} selected {% endif %}>Los Angeles, CA</option>
+                                <option {% if session.location == "Silicon Valley, CA" %} selected {% endif %}>Silicon Valley, CA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="language" class="col-form-label">Favorite language:</label>
+                        <div>
+                            <select name="language" id="language" class="form-select">
+                                <option value="-1">Select a language</option>
+                                <option {% if session.language == "Python" %} selected {% endif %}>Python</option>
+                                <option {% if session.language == "C" %} selected {% endif %}>C</option>
+                                <option {% if session.language == "Javascript" %} selected {% endif %}>Javascript</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Comment (optional):</label>
+                        <textarea name="comment" id="comment" class="form-control" rows="4">{{ session['comment'] }}</textarea>
+                    </div>
+
+                    <div style="color:red">
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+
+
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
