@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendships</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container mt-3 mx-auto">
+
+        <div class="row col-12">
+            <div class="col-sm-12 col-md-6">
+
+                <h1>Friendships</h1>
+
+                {% if friendships %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">User</th>
+                            <th scope="col">Friend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for friendship in friendships%}
+                        <tr>
+                            <td>{{ friendship.user.full_name }}</td>
+                            <td>{{ friendship.friend.full_name }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% else %}
+                <p>The friendship database is empty</p>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+
+                <div class="row">
+                    <h1>Add User</h1>
+
+                    <form action="/user/add" method="post">
+                        <div class="mb-3">
+                            <label class="form-label" for="fname">First Name:</label>
+                            <input type="text" class="form-control" id="fname" name="first_name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="lname">First Name:</label>
+                            <input type="text" class="form-control" id="lname" name="last_name">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary">Add User</button>
+                    </form>
+                </div>
+
+                <div class="row mt-5">
+                    <h1>Create Friendship</h1>
+
+                    <form action="/friendship/add" method="post">
+                        <label class="form-label" for="user_selection">User:</label>
+                        <select class="form-select" id="user_selection" name="user_id">
+                            <option selected value="-1">select a user</option>
+                            {% for user in users %}
+                            <option value="{{ user.id }}">{{ user.full_name }}</option>
+                            </p>
+                            {% endfor %}
+                        </select>
+
+                        <label class="form-label mt-3" for="friend_selection">Friend:</label>
+                        <select class="form-select" id="friend_selection" name="friend_id">
+                            <option selected value="-1">select a friend</option>
+                            {% for user in users %}
+                            <option value="{{ user.id }}">{{ user.full_name }}</option>
+                            {% endfor %}
+                        </select>
+                        
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            {% for message in messages %}
+                                <p style="color:red" class="mt-2">{{message}}</p>
+                            {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+
+
+                        <button type="submit" class="btn btn-outline-primary mt-3">Create</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
