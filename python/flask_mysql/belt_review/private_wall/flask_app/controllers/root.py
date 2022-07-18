@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session
 from flask_app import app
 from flask_app.models.user import User
-from flask_app.controllers import wall
+from flask_app.controllers import messages_controller
 
 @app.route('/')
 def index():
@@ -9,7 +9,6 @@ def index():
 
 @app.route('/user/register', methods=['POST'])
 def user_register():
-    # save posted form input as data dictionary in User format
     data = {
         'first_name' : request.form['first_name'],
         'last_name' : request.form['last_name'],
@@ -18,45 +17,47 @@ def user_register():
         'password_confirm' : request.form['password_confirm'],
     }
 
-    # check if form data are valid
-    # register and login if valid
-    # redirect back to root if invalid
-    if User.is_valid(data):
-        User.create(data)
-        session.clear()
-        session['first_name'] = data["first_name"]
-        session['is_logged_in'] = True
-        return redirect('/user/success')
-    else:
+    # validate form data
+    # if invalid: redirect back to root
+    # if valid: create new user, then login
+    if not User.is_valid(data):
         return redirect('/')
+    
+    new_id = User.create(data)
+    
+    # on successful registration, create new session
+    session.clear()
+    session['user_id'] = new_id
+    session['first_name'] = data["first_name"]
+    session['last_name'] = data["last_name"]
+    session['is_logged_in'] = True
+    
+    return redirect('/messages')
 
 @app.route('/user/login', methods=['POST'])
 def user_login():
-    # save posted form input as data dictionary in User format
     data = {
         'email' : request.form['email'],
         'password' : request.form['password']
     }
     
-    if not User.is_valid_login(data):
-        return redirect('/')
-    
-    # on valid login: store user data in session
-    session.clear()
-    session['first_name'] = User.get_by_email(data).first_name
-    session['is_logged_in'] = True
-    return redirect('/user/success')
-        
-# route for succcesful login
-@app.route('/user/success')
-def user_success():
-    if not session or not session['is_logged_in']:
+    # verify login credentials
+    is_valid_login, this_user = User.is_valid_login(data)
+    if not is_valid_login:
         return redirect('/')
 
-    return render_template("wall.html")
+    # on succesful login: create new session    
+    session.clear()
+    session['user_id'] = this_user.id
+    session['first_name'] = this_user.first_name
+    session['last_name'] = this_user.last_name
+    session['is_logged_in'] = True
+    
+    return redirect('/messages')
+        
 
 @app.route('/user/logout')
-def wall_logout():
+def user_logout():
     session.clear()
     return redirect('/')
 

@@ -1,6 +1,6 @@
 from flask_app import app
 
-from flask_app.controllers import root, wall
+from flask_app.controllers import root, messages_controller
 # import all additional controllers 
 # from flask_app.controllers import root
 

@@ -38,7 +38,7 @@ class User():
         query = "SELECT * FROM users WHERE email = %(email)s;"
         rows = connectToMySQL(cls.db).query_db(query, data)
         if len(rows) < 1:
-            return False
+            return None
 
         return cls( rows[0] )
 
@@ -106,9 +106,13 @@ class User():
 
         return is_valid
 
+    # check login credentials
+    # if valid: return True, user
+    # if not valid: return False, None
     @staticmethod
     def is_valid_login(data):
         is_valid = True
+        this_user = None
 
         flash_catg = 'is_valid_login'
 
@@ -120,15 +124,15 @@ class User():
             is_valid = False
         
         if len(data['email']) >= 1 and len(data['password']) >= 1:
-            user = User.get_by_email(data)
-            if not user:
+            this_user = User.get_by_email(data)
+            if not this_user:
                 flash("invalid email/paswword", flash_catg)
                 is_valid = False
-            elif not bcrypt.check_password_hash(user.hashed_pwd, data['password']):
+            elif not bcrypt.check_password_hash(this_user.hashed_pwd, data['password']):
                 flash("invalid email/paswword", flash_catg)
                 is_valid = False
 
-        return is_valid
+        return is_valid, this_user
 
 
 
