@@ -1,5 +1,3 @@
-# pymysql connection 
-from asyncio import format_helpers
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 from flask import flash
@@ -9,7 +7,7 @@ bcrypt = Bcrypt(app)
 
 class User():
     # class variables
-    db = "login_and_registration_schema"  # schema name for this app
+    db = "private_wall_schema"  # schema name for this app
     email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
     def __init__(self, data):

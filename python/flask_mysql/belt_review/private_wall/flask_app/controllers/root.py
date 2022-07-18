@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, session
 from flask_app import app
 from flask_app.models.user import User
+from flask_app.controllers import wall
 
 @app.route('/')
 def index():
@@ -52,16 +53,12 @@ def user_success():
     if not session or not session['is_logged_in']:
         return redirect('/')
 
-    return render_template("success.html")
+    return render_template("wall.html")
 
 @app.route('/user/logout')
-def user_logout():
+def wall_logout():
     session.clear()
     return redirect('/')
-
-
-
-
 
 
 
