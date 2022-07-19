@@ -33,6 +33,17 @@ class User():
         new_id = connectToMySQL(cls.db).query_db(query, data)
         return new_id 
 
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM users ORDER BY first_name, last_name;"
+        rows = connectToMySQL(cls.db).query_db(query)
+
+        all_users = []
+        for row in rows:
+            all_users.append( cls(row) )
+
+        return all_users
+
     @classmethod 
     def get_by_email(cls, data):
         query = "SELECT * FROM users WHERE email = %(email)s;"
