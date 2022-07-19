@@ -19,6 +19,9 @@ def messages_root():
 
 @app.route('/message/send', methods=['POST'])
 def message_send():
+    # redirect if user has not yet logged in
+    if not session or not session['is_logged_in']:
+        return redirect('/')
 
     data = {
         "from_user_id": session["user_id"],
@@ -34,6 +37,9 @@ def message_send():
 
 @app.route('/message/<int:message_id>/delete')
 def message_delete(message_id):
+    # redirect if user has not yet logged in
+    if not session or not session['is_logged_in']:
+        return redirect('/')
 
     message.Message.delete({"message_id" : message_id})
 
