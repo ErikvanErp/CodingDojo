@@ -2,6 +2,8 @@ from flask import render_template, request, redirect, session
 from flask import flash
 from flask_app import app
 from flask_app.models.user import User
+from flask_app.models import recipe
+
 
 @app.route('/')
 def index():
@@ -22,8 +24,8 @@ def user_register():
     # register and login if valid
     # redirect back to root if invalid
     if User.is_valid(data):
-        User.create(data)
         session.clear()
+        session['user_id'] = User.create(data)
         session['first_name'] = data["first_name"]
         session['is_logged_in'] = True
         return redirect('/user/success')
@@ -49,8 +51,10 @@ def user_login():
         return redirect('/')
     
     # on valid login: store user data in session
+    this_user = User.get_by_email(data)
     session.clear()
-    session['first_name'] = User.get_by_email(data).first_name
+    session["user_id"] = this_user.id 
+    session['first_name'] = this_user.first_name
     session['is_logged_in'] = True
     return redirect('/user/success')
         
@@ -60,7 +64,9 @@ def user_success():
     if not session or not session['is_logged_in']:
         return redirect('/')
 
-    return render_template("success.html")
+    all_recipes = recipe.Recipe.get_all()
+
+    return render_template("recipes.html", all_recipes=all_recipes)
 
 @app.route('/user/logout')
 def user_logout():

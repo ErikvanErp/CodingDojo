@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container mt-3">
+        <navbar>
+            <nav>
+                <h1>Recipe Share</h1>
+            </nav>
+        </navbar>
+        <div class="row">
+            <div class="col-12 col-md-6">            
+                <h3>Registration</h3>
+                <form action="/user/register" method="post">
+                    <div class="form-group">
+                        <label for="fname">First Name</label>
+                        <input type="text" name="first_name" id="fname" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Last Name</label>
+                        <input type="text" name="last_name" id="lname" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password</label>
+                        <input type="password" name="password" id="pwd" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd2">Confirm Password</label>
+                        <input type="password" name="password_confirm" id="pwd2" class="form-control"> 
+                    </div>
+
+                    {% with messages = get_flashed_messages(category_filter=['is_valid']) %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p style="color:red">{{ message }}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <button type="submit" class="btn btn-outline-primary my-3">Register</button>
+
+
+                </form>
+            </div>
+            <div class="col-12 col-md-6">            
+                <h3>Login</h3>
+                <form action="/user/login" method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password</label>
+                        <input type="password" name="password" id="pwd" class="form-control"> 
+                    </div>
+
+                    {% with msgs = get_flashed_messages(category_filter=['is_valid_login']) %}
+                    {% if msgs %}
+                    {% for msg in msgs %}
+                    <p style="color:red">{{ msg }}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <button type="submit" class="btn btn-outline-success my-3">Login</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

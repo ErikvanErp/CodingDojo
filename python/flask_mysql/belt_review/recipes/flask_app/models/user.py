@@ -1,5 +1,4 @@
 # pymysql connection 
-from asyncio import format_helpers
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 from flask import flash
@@ -11,7 +10,7 @@ email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User():
     # class variable: schema name for this app
-    db = "login_and_registration_schema"
+    db = "recipes_schema"
 
     def __init__(self, data):
         self.id = data['id']
