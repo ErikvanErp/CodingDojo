@@ -15,5 +15,5 @@ function shiftArray(arr, shiftBy){
 
 
 console.log(shiftArray([1,2,3,4,5],1))
-console.log(shiftArray([1,2,3,4,5],21))
-console.log(shiftArray([1,2,3,4,5],-4))
+console.log(shiftArray([1,2,3,4,5],2))
+console.log(shiftArray([1,2,3,4,5],-6))
