@@ -1,3 +1,6 @@
+// Euclidean algorithm 
+// recursively implemented
+
 function gcd(x, y){
 
     if (x % y == 0){
