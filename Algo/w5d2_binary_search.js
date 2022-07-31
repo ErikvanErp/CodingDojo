@@ -27,9 +27,23 @@ function binarySearch(sortedNums, searchNum){
     else {
         return binarySearch(sortedNums.slice(halfway, sortedNums.length), searchNum);
     }
-
-    return true;
 }
 
 
-console.log(binarySearch([2, 2, 2, 2, 3, 4, 5, 6, 7, 8, 9], 4))
+var arr = [1, 2, 3, 4, 6, 7, 9, 11, 12]
+console.log(binarySearch(arr, 1) == true)
+console.log(binarySearch(arr, 2) == true)
+console.log(binarySearch(arr, 3) == true)
+console.log(binarySearch(arr, 4) == true)
+console.log(binarySearch(arr, 6) == true)
+console.log(binarySearch(arr, 7) == true)
+console.log(binarySearch(arr, 9) == true)
+console.log(binarySearch(arr, 11) == true)
+console.log(binarySearch(arr, 12) == true)
+
+console.log(binarySearch(arr, 5) == false)
+console.log(binarySearch(arr, 8) == false)
+console.log(binarySearch(arr, 10) == false)
+
+console.log(binarySearch(arr, -3) == false)
+console.log(binarySearch(arr, 21) == false)
