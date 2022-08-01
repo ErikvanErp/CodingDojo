@@ -1,10 +1,16 @@
 public class Test {
     public static void main(String[] args){
-        int age;
-        double amount = 3;
-        Double price = 3.0;
-        String name = "James";
+        
+        System.out.println("Hi.");
+        System.out.println(addThings(6,7));
+        System.out.println(addThings("Hello ", "World."));
+    }
 
-        System.out.println("Test");
+    public static String addThings(String a, String b){
+            return a + b;
+    }
+
+    public static int addThings(int a, int b){
+        return a + b;
     }
 }
