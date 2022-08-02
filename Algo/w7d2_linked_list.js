@@ -17,24 +17,18 @@ class SinglyLinkedList {
     }
   
     isEmpty() {
-        if (this.head){
-            return false;
-        }
-        else{
-            return true;
-        }
+        if (this.head){ return false; }
+        else{ return true; }
     }
   
     insertAtBack(data) {
       let newnode = new ListNode(data);
       if (this.isEmpty()){
-        this.head = newnode;
+        this.head = newnode; 
       }
       else{
         let listnode = this.head;
-        while(listnode.next){
-          listnode = listnode.next;
-        }
+        while(listnode.next){ listnode = listnode.next; }
         listnode.next = newnode;
       }
     }
