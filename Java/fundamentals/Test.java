@@ -1,16 +1,25 @@
+import java.util.ArrayList;
+
 public class Test {
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        ArrayList<String> snacks = new ArrayList<String>();
+        snacks.add("Pear");
+        snacks.add("Apple");
+        snacks.add("Apple");
+        snacks.add("Apple");
+        snacks.add("Apple");
+        snacks.add("Apricot");
+        snacks.add("Banana");
         
-        System.out.println("Hi.");
-        System.out.println(addThings(6,7));
-        System.out.println(addThings("Hello ", "World."));
+    for(int i=0; i<snacks.size(); i++) {
+        if(snacks.get(i).charAt(0) == 'A') {
+            snacks.remove(i);
+        }
     }
-
-    public static String addThings(String a, String b){
-            return a + b;
-    }
-
-    public static int addThings(int a, int b){
-        return a + b;
+    
+        
+    for(int i=0; i<snacks.size(); i++) {
+        System.out.println(snacks.get(i));
+       }
     }
 }
