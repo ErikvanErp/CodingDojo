@@ -22,23 +22,42 @@ class SinglyLinkedList {
     }
   
     insertAtBack(data) {
-      let newnode = new ListNode(data);
+      let newNode = new ListNode(data);
       if (this.isEmpty()){
-        this.head = newnode; 
+        this.head = newNode; 
       }
       else{
         let listnode = this.head;
         while(listnode.next){ listnode = listnode.next; }
-        listnode.next = newnode;
+        listnode.next = newNode;
       }
     }
 
-    printListNodes(){
-      let node = this.head;
-      console.log(node.data);
-      while(node.next){
-        console.log(node.next.data);
-        node = node.next;
+    //removeFromBack() {}
+
+    insertAtFront(data) {
+      let newNode = new ListNode(data);
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    
+    removeFromFront() {
+      if (!this.isEmpty()){
+        this.head = this.head.next;
+      }
+    } 
+
+    display(){
+      if (this.isEmpty()){
+        console.log("Empty list.");
+      }
+      else{
+        let node = this.head;
+        console.log(node.data);
+        while(node.next){
+          node = node.next;
+          console.log(node.data);
+        }
       }
     }
 }
@@ -53,4 +72,9 @@ list.insertAtBack(7);
 
 console.log(list.isEmpty());
 
-list.printListNodes();
+list.display();
+
+list.removeFromFront();
+list.removeFromFront();
+list.insertAtFront(1);
+list.display();
