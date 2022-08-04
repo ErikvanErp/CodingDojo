@@ -33,6 +33,22 @@ class SinglyLinkedList {
       }
     }
 
+    insertAtBackRecursive(data, runner=this.head){
+      if (this.isEmpty()){
+        let newnode = new ListNode(data);
+        this.head = newnode;
+        return;
+      }
+      else if (runner.next == null){
+        let newnode = new ListNode(data);
+        runner.next = newnode;
+        return;
+      }
+      else{
+        this.insertAtBackRecursive(data, runner.next);
+      }
+    }
+
     //removeFromBack() {}
 
     insertAtFront(data) {
@@ -46,6 +62,26 @@ class SinglyLinkedList {
         this.head = this.head.next;
       }
     } 
+
+    seedFromArray(values){
+      this.head = null;
+      for (let value of values){
+        this.insertAtBack(value);
+      }
+    }
+
+    toArray(){
+      let listArray = [];
+      if (!this.isEmpty()){
+        let node = this.head;
+        listArray.push(node.data);
+        while(node.next){
+          node = node.next;
+          listArray.push(node.data);
+        }
+      }
+      return listArray;
+    }
 
     display(){
       if (this.isEmpty()){
@@ -63,18 +99,14 @@ class SinglyLinkedList {
 }
 
 var list = new SinglyLinkedList();
-
-console.log(list.isEmpty());
-
-list.insertAtBack(2);
-list.insertAtBack(3);
-list.insertAtBack(7);
-
-console.log(list.isEmpty());
-
+list.insertAtBackRecursive(11);
 list.display();
 
-list.removeFromFront();
-list.removeFromFront();
-list.insertAtFront(1);
-list.display();
+
+// list.seedFromArray([1,3,5,7,9]);
+// list.display();
+
+// var array1 = list.toArray();
+// console.log(array1);
+
+// list.display();
