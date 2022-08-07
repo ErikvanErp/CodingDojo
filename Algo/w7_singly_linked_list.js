@@ -49,7 +49,23 @@ class SinglyLinkedList {
       }
     }
 
-    //removeFromBack() {}
+    removeFromBack() {
+      if(this.isEmpty()){
+        return null;
+      }
+      let node = this.head; 
+      if (node.next == null){
+        this.head == null;
+        return node;
+      }
+
+      while(node.next.next){
+        node = node.next;
+      }
+      let lastNode = node.next;
+      node.next = null;
+      return lastNode;
+    }
 
     insertAtFront(data) {
       let newNode = new ListNode(data);
@@ -83,6 +99,18 @@ class SinglyLinkedList {
       return listArray;
     }
 
+    contains(value){
+      let node = this.head;
+      while (node != null && node.data != value){
+        node = node.next;
+      }
+      return node ? true : false;  
+    }
+
+    // containsRecursive(){
+
+    // }
+
     display(){
       if (this.isEmpty()){
         console.log("Empty list.");
@@ -99,8 +127,8 @@ class SinglyLinkedList {
 }
 
 var list = new SinglyLinkedList();
-list.insertAtBackRecursive(11);
-list.display();
+// list.insertAtBackRecursive(11);
+// list.display();
 
 
 // list.seedFromArray([1,3,5,7,9]);
@@ -110,3 +138,10 @@ list.display();
 // console.log(array1);
 
 // list.display();
+console.log(list.contains(5));
+console.log(list.contains(4));
+console.log(list.contains(100));
+console.log(list.contains(-1));
+console.log(list.contains(1));
+console.log(list.contains(9));
+
