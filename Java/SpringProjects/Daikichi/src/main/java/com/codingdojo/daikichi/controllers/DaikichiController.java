@@ -1,5 +1,6 @@
 package com.codingdojo.daikichi.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +36,6 @@ public class DaikichiController {
 			return "Now is a great time to spend with family and friends.";
 		}
 	}
+	
 
 }

@@ -107,8 +107,45 @@ class SinglyLinkedList {
       return node ? true : false;  
     }
 
-    // containsRecursive(){
+    secondToLast(){
+      if(this.isEmpty()){
+        return null;
+      }
+      let node = this.head; 
+      if (node.next == null){
+        return null;
+      }
+      while(node.next.next){
+        node = node.next;
+      }
+      return node;
+    }
 
+    // UNFINISHED
+    
+    // removeValue(value){
+    //   if (this.isEmpty()){
+    //     return false;
+    //   }
+    //   if (this.head.next == null){
+    //     if (this.head.data == value){
+    //       this.head = null;
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   }
+          
+    //   let node = this.head;
+    //   while (node.next != null && node.next.data != value){
+    //     node = node.next;
+    //   }
+    //   if (node.next == null) {
+    //     node.next = node.next.next;
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
     // }
 
     display(){
@@ -131,17 +168,6 @@ var list = new SinglyLinkedList();
 // list.display();
 
 
-// list.seedFromArray([1,3,5,7,9]);
-// list.display();
-
-// var array1 = list.toArray();
-// console.log(array1);
-
-// list.display();
-console.log(list.contains(5));
-console.log(list.contains(4));
-console.log(list.contains(100));
-console.log(list.contains(-1));
-console.log(list.contains(1));
-console.log(list.contains(9));
-
+list.seedFromArray([]);
+list.display();
+console.log(list.secondToLast());
