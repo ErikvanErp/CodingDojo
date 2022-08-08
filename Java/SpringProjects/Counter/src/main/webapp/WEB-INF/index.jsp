@@ -14,5 +14,7 @@
 
 <p>Check out /counter to see the counter</p>
 
+<a href="/reset">Reset</a>
+
 </body>
 </html>
