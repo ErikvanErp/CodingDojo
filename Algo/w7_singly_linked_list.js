@@ -121,32 +121,31 @@ class SinglyLinkedList {
       return node;
     }
 
-    // UNFINISHED
-    
-    // removeValue(value){
-    //   if (this.isEmpty()){
-    //     return false;
-    //   }
-    //   if (this.head.next == null){
-    //     if (this.head.data == value){
-    //       this.head = null;
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
-    //   }
-          
-    //   let node = this.head;
-    //   while (node.next != null && node.next.data != value){
-    //     node = node.next;
-    //   }
-    //   if (node.next == null) {
-    //     node.next = node.next.next;
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
+    // remove the first node whose data == value
+    // return true if value is found, false otherwise
+    removeValue(value){
+      // edge cases: empty list, or 1st node needs to be removed
+      if (this.isEmpty()){
+        return false;
+      }
+      if (this.head.data == value){
+        this.head = this.head.next;
+        return true;
+      }
+      // list not empty, and head is not to be removed
+      // look for value in node.next.data
+      let node = this.head;
+      while (node.next != null && node.next.data != value){
+        node = node.next;
+      }
+      if (node.next) {
+        // if found, remove next node
+        node.next = node.next.next;
+        return true;
+      } else {
+        return false;
+      }
+    }
 
     display(){
       if (this.isEmpty()){
@@ -170,4 +169,5 @@ var list = new SinglyLinkedList();
 
 list.seedFromArray([]);
 list.display();
-console.log(list.secondToLast());
+console.log(list.removeValue(1));
+list.display();
