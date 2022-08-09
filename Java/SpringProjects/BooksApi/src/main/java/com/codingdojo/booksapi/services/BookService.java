@@ -19,10 +19,6 @@ public class BookService {
 	public List<Book> allBooks() {
 	    return bookRepository.findAll();
 	}
-	 // creates a book
-	public Book createBook(Book b) {
-	    return bookRepository.save(b);
-	}
 	 // retrieves a book
 	public Book findBook(Long id) {
 	    Optional<Book> optionalBook = bookRepository.findById(id);
@@ -31,6 +27,18 @@ public class BookService {
 	    } else {
 	        return null;
 	    }
+	}	
+	// creates a book
+	public Book createBook(Book b) {
+		return bookRepository.save(b);
+	}
+	// update book info
+	public void updateBook(Book b) {
+		bookRepository.save(b);
+	}
+	// delete book
+	public void deleteBook(Long id) {
+		bookRepository.deleteById(id);
 	}
 }
 
