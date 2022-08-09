@@ -147,6 +147,51 @@ class SinglyLinkedList {
       }
     }
 
+    prepend(newValue, targetValue){
+      if(this.isEmpty()){
+        return false;
+      }
+      let newNode = new ListNode(newValue);
+      if(this.head.data == targetValue){
+        newNode.next = this.head;
+        this.head = newNode;
+        return true;
+      }
+
+      let runner = this.head;
+      while(runner.next != null && runner.next.data != targetValue){
+        runner = runner.next;
+      }
+
+      if(runner.next == null){
+        return false;
+      } else {
+        newNode.next = runner.next;
+        runner.next = newNode;
+        return true;        
+      }
+    }
+
+    moveMinToFront(){
+      if(this.isEmpty() || this.head.next == null){
+        return this;
+      }
+      let minNodePrev = this.head;
+      let runner = this.head;
+      while(runner.next != null){
+        if(minNodePrev.next.data > runner.next.data){
+          minNodePrev = runner;
+        }
+        runner = runner.next;
+      }
+      let minNode = new ListNode(minNodePrev.next.data);
+      minNodePrev.next = minNodePrev.next.next;
+      minNode.next = this.head; 
+      this.head = minNode;
+
+      return this
+    }
+
     display(){
       if (this.isEmpty()){
         console.log("Empty list.");
@@ -167,7 +212,8 @@ var list = new SinglyLinkedList();
 // list.display();
 
 
-list.seedFromArray([]);
+list.seedFromArray([10, 5, 1, 7, 9]);
 list.display();
-console.log(list.removeValue(1));
+console.log("****************")
+list.moveMinToFront();
 list.display();
