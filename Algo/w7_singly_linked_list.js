@@ -3,7 +3,6 @@
  * linked to other Node instances to form a list of linked nodes.
  */
 class ListNode {
-    
     constructor(data) {
       this.data = data;
       this.next = null;
@@ -205,6 +204,56 @@ class SinglyLinkedList {
         }
       }
     }
+
+    concat(addList){
+      if (this.isEmpty){
+        this.head = addList.head;
+      }
+      let runner = this.head;
+      while(runner.next != null){
+        runner = runner.next;
+      }
+      runner.next = addList.head;
+      return this;
+    }
+
+      // NOT FUNCTIONING YET
+    splitOnVal(value){
+      let newList = new SinglyLinkedList();
+      // edge cases
+      if(this.isEmpty()){
+        return newList;
+      }
+      if (this.head.data == value){
+        newList.head = this.head;
+        this.head = null;
+        return newList;
+      }
+
+      // generic case
+      let runner = this.head;
+      while (runner.next != null && runner.next.data != value){
+        runner = runner.next;
+      }
+      if(runner.next != null){
+        newList.head = runner.next;
+        runner.next = null;   
+      }
+      return newList;
+  }
+
+  recursiveMax(runner = this.head, maxNode = this.head){
+    if (this.isEmpty()){
+      return null;
+    }
+    if(runner == null){
+          return maxNode.data;
+    }
+    if(runner.data > maxNode.data){
+          maxNode = runner;
+    }
+    return this.recursiveMax(runner.next, maxNode);
+  }
 }
 
 var list = new SinglyLinkedList();
@@ -212,8 +261,10 @@ var list = new SinglyLinkedList();
 // list.display();
 
 
-list.seedFromArray([10, 5, 1, 7, 9]);
+list.seedFromArray([]);
 list.display();
 console.log("****************")
-list.moveMinToFront();
+let newList = list.splitOnVal(1);
 list.display();
+console.log("****************")
+newList.display();
