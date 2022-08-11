@@ -9,57 +9,27 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-	<title>Safe Travels</title>
+	<title>Save Travels</title>
 </head>
 <body>
+
 	<div class="container">
-		<div class="navbar">
+		<div class="navbar col col-6">
 			<nav>
-				<h1>Save Travels</h1>
+				<h1>Edit Expense</h1>
+			</nav>
+			<nav>
+				<a href="/expenses" class="btn btn-outline-primary">Go Back</a>
 			</nav>
 		</div>
-		<div class="row">
-			<div class="col col-8">
-				
-				<table class="table table-striped">
-					<tr>
-						<th>Expense</th>
-						<th>Vendor</th>
-						<th class="text-end">Amount</th>
-						<th>Actions</th>
-						<th></th>					
-					</tr>
-					
-					<c:forEach var="expense" items="${ allExpenses }">
-					<tr>
-						<td>
-							<a href="/expense/${ expense.id }/show">
-								<c:out value="${ expense.expenseName }"/>
-							</a>
-						</td>
-						<td><c:out value="${ expense.vendor }"/></td>
-						<td class="text-end"><c:out value="${ expense.formatAmount() }"/></td>
-						<td>
-							<a href="/expense/${ expense.id }/edit" class="btn btn-outline-secondary">edit</a>
-						</td>
-						<td>
-							<form action="/expense/${ expense.id }/delete" method="POST">
-								<input type="hidden" name="_method" value="DELETE">
-								<button type="submit" class="btn btn-outline-danger">delete</button>
-							</form>
-						</td>
-					</tr>
-					</c:forEach>
-					
-				</table>
-			</div>
-		</div>		
+
 		<div class="row">
 			<div class="col col-4">
 				
-				<h2>Add an Expense</h2>
+				<h2>Edit an Expense</h2>
 				
-				<form:form action="/expense/add" method="POST" modelAttribute="expense">
+				<form:form action="/expense/${ expense.id }/edit" method="POST" modelAttribute="expense">
+					<input type="hidden" name="_method" value="PUT"/>
 				
 					<div class="form-group">
 						<form:label path="expenseName">Expense Name</form:label>
@@ -85,12 +55,13 @@
 						<form:errors path="description" class="text-danger"/>		
 					</div>
 
-				
 					<button type="submit" class="btn btn-primary mt-3">Submit</button>
 				</form:form>
 					
 			</div>
 		</div>
 	</div>
+
+
 </body>
 </html>
