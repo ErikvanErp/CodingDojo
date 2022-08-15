@@ -24,12 +24,13 @@ public class ExpensesController {
 	
 	@GetMapping("/")
 	public String home() {
+		
 		return "redirect:/expenses";
 	}
 	
 	@GetMapping("/expenses")
-	public String index(@ModelAttribute("expense") Expense expense, Model model)
-	{
+	public String index(@ModelAttribute("expense") Expense expense, Model model) {
+		
 		model.addAttribute("allExpenses", expenseService.getAllExpenses());
 		return "index.jsp";
 	}
@@ -38,8 +39,8 @@ public class ExpensesController {
 	public String addExpense(
 			@Valid @ModelAttribute("expense") Expense expense,
 			BindingResult result,
-			Model model) 
-	{
+			Model model) {
+		
 		if(result.hasErrors()) {
 			model.addAttribute("allExpenses", expenseService.getAllExpenses());
 			return "index.jsp";
@@ -51,8 +52,11 @@ public class ExpensesController {
 	}
 	
 	@GetMapping("/expense/{expenseId}/edit")
-	public String expenseEdit(Model model, @PathVariable("expenseId") Long expenseId)
-	{
+	public String expenseEdit(
+			@ModelAttribute("expense") Expense expense, 
+			Model model, 
+			@PathVariable("expenseId") Long expenseId) {
+		
 		model.addAttribute("expense", expenseService.getExpenseById(expenseId));
 		return "edit.jsp";
 	}
@@ -60,8 +64,8 @@ public class ExpensesController {
 	@PutMapping("/expense/{id}/edit")
 	public String expenseUpdate(
 			@Valid @ModelAttribute("expense") Expense expense,
-			BindingResult result) 
-	{
+			BindingResult result) {
+		
 		if(result.hasErrors()) {
 			return "edit.jsp";
 		} else {
@@ -72,6 +76,7 @@ public class ExpensesController {
 	
 	@DeleteMapping("/expense/{id}/delete")
 	public String expenseDelete(@PathVariable("id") Long id) {
+		
 		expenseService.deleteExpense(id);
 		return "redirect:/expenses";
 	}
@@ -82,7 +87,4 @@ public class ExpensesController {
 		model.addAttribute("expense", expenseService.getExpenseById(id));
 		return "show.jsp";
 	}
-	
-	
-
 }
