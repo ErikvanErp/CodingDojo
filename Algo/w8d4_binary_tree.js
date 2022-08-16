@@ -180,15 +180,56 @@ class BinarySearchTree {
         return outputArray;
     } 
 
+    toArrayInOrder(node = this.root, values = []){
+        if(this.isEmpty()) { return []; }
+        if (node.left) {
+            this.toArrayInOrder(node.left, values);
+        }
+        values.push(node.data);
+        if (node.right) {
+            this.toArrayInOrder(node.right, values);
+        }
+        return values;
+    }
+
+    toArrayPreOrder(node = this.root, values = []){
+        if(this.isEmpty()) { return []; }
+
+        values.push(node.data);
+        if (node.left) {
+            this.toArrayPreOrder(node.left, values);
+        }
+        if (node.right) {
+            this.toArrayPreOrder(node.right, values);
+        }
+        return values;
+    }
+
+    toArrayPostOrder(node = this.root, values = []){
+        if(this.isEmpty()) { return []; }
+
+        if (node.left) {
+            this.toArrayPostOrder(node.left, values);
+        }
+        if (node.right) {
+            this.toArrayPostOrder(node.right, values);
+        }
+        values.push(node.data);
+
+        return values;
+    }
+
+
 }
 
 let BST = new BinarySearchTree();
-for (let i = 0; i <20; i++){
-    BST.insert(Math.floor(Math.random() * 1000) + 1);
-    BST.insert(Math.floor(Math.random() * 100) + 1);   
+for (let i = 0; i <10; i++){
+    BST.insert(Math.floor(Math.random() * 1000) + 1); 
 }
 BST.display();
-
+console.log(BST.toArrayInOrder());
+console.log(BST.toArrayPreOrder());
+console.log(BST.toArrayPostOrder());
 
 
 

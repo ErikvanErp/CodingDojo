@@ -55,7 +55,6 @@ public class LanguagesController {
 			languagesService.createNewLanguage(language);
 			return "redirect:/languages";			
 		}
-		
 	}
 	
 	@GetMapping("/language/{id}/edit")
