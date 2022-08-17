@@ -29,23 +29,22 @@ public class UserService {
     		return null;    		
     	}
 		newUser.setHashedPassword(BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()));
-		User savedUser = userRepo.save(newUser); 
-		return savedUser;
+		return userRepo.save(newUser); 
     }
     
     public User login(LoginUser newLogin, BindingResult result) {
     	Optional<User> existingUser = userRepo.findByEmail(newLogin.getEmail()); 
-    	if (existingUser.isPresent()) {
-    		if (!BCrypt.checkpw(newLogin.getPassword(), existingUser.get().getHashedPassword())) {
-    			result.rejectValue("password", "invalidCredentials", "The login information is not recognized.");
-    		};
-    	} else {
-    		result.rejectValue("password", "invalidCredentials", "The login information is not recognized.");    		
+    	if (!existingUser.isPresent()) {
+    		result.rejectValue("password", "invalidCredentials", "Invalid login.");    		
+    		return null;    		
+    	}
+    	User user = existingUser.get();
+    	if (!BCrypt.checkpw(newLogin.getPassword(), user.getHashedPassword())) {
+    		result.rejectValue("password", "invalidCredentials", "Invalid login.");
     	}
     	if(result.hasErrors()) {
     		return null;    		
-    	} else {
-    		return existingUser.get();
     	}
+    	return user;
     }
 }

@@ -9,14 +9,14 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-	<title>Authentication</title>
+	<title>Book Club</title>
 </head>
 <body>
 	<div class="container p-3">
 		<div class="navbar">
 			<nav>
-				<h1>Welcome!</h1>
-				<p>Join our growing community.</p>
+				<h1>Book Club</h1>
+				<p>A place for friends to share thoughts on books.</p>
 			</nav>
 		</div>
 		
@@ -28,7 +28,7 @@
 				<form:form action="/register" method="POST" modelAttribute="newUser">
 				
 					<div class="form-group">
-						<form:label path="userName">User Name</form:label>
+						<form:label path="userName">Name</form:label>
 						<form:input type="text" path="userName" class="form-control"/>
 						<form:errors path="userName" class="text-danger"/>		
 					</div>

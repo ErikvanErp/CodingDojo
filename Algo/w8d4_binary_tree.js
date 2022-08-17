@@ -223,7 +223,7 @@ class BinarySearchTree {
 }
 
 let BST = new BinarySearchTree();
-for (let i = 0; i <10; i++){
+for (let i = 0; i <20; i++){
     BST.insert(Math.floor(Math.random() * 1000) + 1); 
 }
 BST.display();
