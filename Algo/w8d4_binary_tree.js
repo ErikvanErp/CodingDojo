@@ -219,6 +219,67 @@ class BinarySearchTree {
         return values;
     }
 
+    // Array created with a Breadth First Search
+    toArrayLevelOrder(node = this.root){
+        if(this.isEmpty()){
+            return [];
+        }
+        let level = 0;
+        let values = [];
+        let moreLevels = true;
+        while (moreLevels){
+            let levelValues = [];
+            this.toArrayLevel(this.root, level, levelValues);
+            values = values.concat(levelValues);
+            if(levelValues.length == 0){
+                moreLevels = false;
+            }
+            level += 1;
+        }
+        return values;
+    }
+    // auxiliary function called by toArrayLevelOrder
+    // returns an array with all nodes on given level
+    // level 0 is the root node.
+    toArrayLevel(node = this.root, level, values = []){
+        if (level == 0){
+            values.push(node.data);
+            return;
+        }
+        if (node.left) {
+            this.toArrayLevel(node.left, level - 1, values);
+        }
+        if (node.right) {
+            this.toArrayLevel(node.right, level - 1, values);
+        }
+        return values;
+    }
+
+    toArrLevelorderRecursive(nodeList = [this.root], results = []) {
+        if (nodeList.length === 0) {
+          return results;
+        }
+    
+        const node = nodeList.shift();
+        results.push(node.data);
+    
+        if (node.left) {
+          nodeList.push(node.left);
+        }
+        if (node.right) {
+          nodeList.push(node.right);
+        }
+    
+        return this.toArrLevelorderRecursive(nodeList, results);
+    }
+
+    size(current = this.root){
+        if(current == null){
+            return 0; 
+        }
+        return this.size(current.left) + this.size(current.right) + 1;
+    }
+
 
 }
 
@@ -227,9 +288,9 @@ for (let i = 0; i <20; i++){
     BST.insert(Math.floor(Math.random() * 1000) + 1); 
 }
 BST.display();
-console.log(BST.toArrayInOrder());
-console.log(BST.toArrayPreOrder());
-console.log(BST.toArrayPostOrder());
+console.log(BST.toArrLevelorderRecursive());
+
+
 
 
 

@@ -176,7 +176,6 @@ public class MainController {
  @GetMapping("/books/{id}/borrow")
  public String borrowBook(
 		 @PathVariable("id") Long bookId,
-		 Model model,
 		 HttpSession session) {
 	 if(session.getAttribute("user") == null) {
 		 return "redirect:/logout";
@@ -190,7 +189,6 @@ public class MainController {
  @GetMapping("/books/{id}/return")
  public String returnBook(
 		 @PathVariable("id") Long bookId,
-		 Model model,
 		 HttpSession session) {
 	 if(session.getAttribute("user") == null) {
 		 return "redirect:/logout";
