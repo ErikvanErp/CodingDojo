@@ -273,6 +273,28 @@ class BinarySearchTree {
         return this.toArrLevelorderRecursive(nodeList, results);
     }
 
+    toArrLevelOrderCaleb( node = this.root, level = 0, arr = [] ){
+        if( ! node ){
+            return [];
+        }
+
+        if( ! arr[level] ){
+            arr[level] = [node.data];
+        } else {
+            arr[level].push(node.data);
+        }
+        this.toArrLevelOrderCaleb( node.left, level + 1, arr );
+        this.toArrLevelOrderCaleb( node.right, level + 1, arr );
+
+        if( level === 0 ){
+            let resultArr = [];
+            for( let i = 0; i < arr.length; i++ ){
+                resultArr = resultArr.concat(arr[i]);
+            }
+            return resultArr;
+        }
+    }
+
     size(current = this.root){
         if(current == null){
             return 0; 
@@ -280,15 +302,44 @@ class BinarySearchTree {
         return this.size(current.left) + this.size(current.right) + 1;
     }
 
+    height(node = this.root){
+        if( !node ) { return 0 };
 
+        let heightLeft = this.height(node.left);
+        let heightRight = this.height(node.right);
+
+        return 1 + Math.max(heightLeft, heightRight);
+    }
+
+    isFull(node = this.root){
+        if(this.isEmpty()){
+            return false;
+        }
+        if (!node.right && !node.left){
+            return true;
+        } else if(node.left && !node.right){
+            return false;
+        } else if (!node.left && node.right){
+            return false;
+        } else {
+            return(this.isFull(node.left) && this.isFull(node.right));
+        } 
+    }
 }
 
-let BST = new BinarySearchTree();
-for (let i = 0; i <20; i++){
+var BST2 = new BinarySearchTree();
+console.log(BST2.height());
+BST2.insert(5);
+console.log(BST2.height());
+
+var BST = new BinarySearchTree();
+for (let i = 0; i <3; i++){
     BST.insert(Math.floor(Math.random() * 1000) + 1); 
 }
 BST.display();
-console.log(BST.toArrLevelorderRecursive());
+console.log(BST.height());
+console.log(BST.isFull());
+
 
 
 

@@ -1,4 +1,4 @@
-package com.codingdojo.authentication.models;
+package com.codingdojo.projectmanager.models;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

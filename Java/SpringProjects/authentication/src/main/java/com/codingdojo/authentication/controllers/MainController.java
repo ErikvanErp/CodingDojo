@@ -39,8 +39,11 @@ public class MainController {
  }
  
  @PostMapping("/register")
- public String register(@Valid @ModelAttribute("newUser") User newUser, 
-         BindingResult result, Model model, HttpSession session) { 
+ public String register(
+		 @Valid @ModelAttribute("newUser") User newUser, 
+         BindingResult result, 
+         Model model, 
+         HttpSession session) { 
 	 
 	 User savedUser = userServ.register(newUser, result);
      if(result.hasErrors()) {
@@ -52,8 +55,11 @@ public class MainController {
  }
  
  @PostMapping("/login")
- public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, 
-         BindingResult result, Model model, HttpSession session) {
+ public String login(
+		 @Valid @ModelAttribute("newLogin") LoginUser newLogin, 
+         BindingResult result, 
+         Model model, 
+         HttpSession session) {
 	 
      User currentUser = userServ.login(newLogin, result);
      if(result.hasErrors()) {

@@ -1,4 +1,4 @@
-package com.codingdojo.authentication.models;
+package com.codingdojo.projectmanager.models;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -59,11 +62,15 @@ public class User {
     private Date updatedAt;
     
     @OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private List<Book> books;
+    private List<Project> projects;
     
-    @OneToMany(mappedBy="borrower", fetch=FetchType.LAZY)
-    private List<Book> borrowedBooks;
-  
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(
+    		name="users_projects",
+    		joinColumns=@JoinColumn(name="user_id"),
+    		inverseJoinColumns=@JoinColumn(name="project_id"))
+    private List<Project> teams;
+    
     public User() {}
     
     // timestamps
@@ -76,7 +83,6 @@ public class User {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
-
 	// getters/setters
 	public Long getId() {
 		return id;
@@ -140,6 +146,24 @@ public class User {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}	
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
+	public List<Project> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Project> teams) {
+		this.teams = teams;
+	}
+	
 }
     
+
