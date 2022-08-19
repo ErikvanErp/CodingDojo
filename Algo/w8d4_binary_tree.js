@@ -20,13 +20,20 @@ class BinarySearchTree {
 
     insert( newVal ){
         let newNode = new BSTNode( newVal )
+        this.insertNode(newNode);
+    }
+
+    insertNode( newNode ){
+        if (newNode == null){
+            return this;
+        }
         if( this.isEmpty() ){
             this.root = newNode;
             return this;
         }
         let runner = this.root;
         while( runner ) {
-            if ( newVal > runner.data ){
+            if ( newNode.data > runner.data ){
                 if( runner.right ){
                     runner = runner.right;
                 } else {
@@ -113,8 +120,6 @@ class BinarySearchTree {
             return this.containsRecursive(searchVal, current.left);
         }
     }
-
-    
 
     display() {
         var printLines = this.displayArray();
@@ -325,21 +330,73 @@ class BinarySearchTree {
             return(this.isFull(node.left) && this.isFull(node.right));
         } 
     }
+
+    // TODO this function isn't working yet
+    removeValue(value){
+        if(this.isEmpty()) { return false; }
+        if (this.root.data == value){
+            this.removeRoot();
+            return true;
+        }
+        var parentNode = null;
+        var runner = this.root;
+        while(runner && runner.data != value) {
+            parentNode = runner;
+            if(runner.data > value){
+                runner = runner.left;
+            } else {
+                runner = runner.right;
+            }
+        }
+        if (!runner){
+            return false;
+        }
+        if (parentNode.data > runner.data){
+            parentNode.left = runner.left;
+        } else {
+            parentNode.right = runner.right;
+        }
+        if (runner.right){
+            this.insertNode(runner.right);
+        }
+        return true;
+    }
+
+    removeRoot(){
+        if(this.isEmpty()) { return; }
+        if (this.root.right){
+            let leftNode = this.root.left;
+            this.root == this.root.right;
+            this.insertNode(leftNode);
+        } else {
+            this.root = this.root.left;
+        }
+    }
+
+    findDuplicates(){
+        var treeToArray = this.toArrayInOrder();
+        var duplicates = [];
+        for (let i = 0; i < treeToArray.length - 1; i++){
+            if (treeToArray[i] == treeToArray[i+1]){
+                if (!duplicates.includes(treeToArray[i])){
+                    duplicates.push(treeToArray[i]);
+                }
+            }
+        }
+        return duplicates;
+    }
 }
 
-var BST2 = new BinarySearchTree();
-console.log(BST2.height());
-BST2.insert(5);
-console.log(BST2.height());
+
 
 var BST = new BinarySearchTree();
-for (let i = 0; i <3; i++){
-    BST.insert(Math.floor(Math.random() * 1000) + 1); 
+for (let i = 0; i <10; i++){
+    BST.insert(Math.floor(Math.random() * 10) + 1); 
 }
 BST.display();
-console.log(BST.height());
-console.log(BST.isFull());
-
+console.log(BST.removeValue(5))
+console.log(BST.toArrayInOrder());
+BST.display();
 
 
 
