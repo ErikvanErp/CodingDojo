@@ -44,7 +44,11 @@ public class Project {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@ManyToMany(mappedBy="teams", fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="users_projects",
+			joinColumns=@JoinColumn(name="project_id"),
+			inverseJoinColumns=@JoinColumn(name="user_id"))
 	private List<User> members;
 	
 	@Column(updatable=false)

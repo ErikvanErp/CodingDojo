@@ -15,17 +15,17 @@
 	<div class="container col-8 mx-auto p-3">
 		<div class="navbar">
 			<nav>
-				<h1>Create a Project</h1>
+				<h1>Edit Project</h1>
 			</nav>
 			<nav>
-				<a href="/dashboard" class="btn btn-outline-secondary">Cancel</a>
+				<a href="/dashboard" class="btn btn-outline-danger">Cancel</a>
 			</nav>
 		</div>
 		
 		<div class="row">
 			<div class="col col-6">
 						
-				<form:form action="/projects/new" method="POST" modelAttribute="project">
+				<form:form action="/projects/${ project.id }/edit" method="POST" modelAttribute="project">
 					<form:input type="hidden" path="user" value="${ user.id }"/>
 									
 					<div class="form-group">
