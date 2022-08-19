@@ -58,12 +58,6 @@ public class User {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
     
-    @OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private List<Book> books;
-    
-    @OneToMany(mappedBy="borrower", fetch=FetchType.LAZY)
-    private List<Book> borrowedBooks;
-  
     public User() {}
     
     // timestamps
@@ -77,7 +71,6 @@ public class User {
         this.updatedAt = new Date();
     }
 
-	// getters/setters
 	public Long getId() {
 		return id;
 	}

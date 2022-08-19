@@ -9,14 +9,13 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-	<title>Book Club</title>
+	<title>Java Belt Exam</title>
 </head>
 <body>
 	<div class="container p-3">
 		<div class="navbar">
 			<nav>
-				<h1>Book Club</h1>
-				<p>A place for friends to share thoughts on books.</p>
+				<h1>Login and Registration</h1>
 			</nav>
 		</div>
 		
