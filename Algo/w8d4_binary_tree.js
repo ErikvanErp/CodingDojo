@@ -23,6 +23,7 @@ class BinarySearchTree {
         this.insertNode(newNode);
     }
 
+    // duplicate values: insert in the left-branch of exisiting node
     insertNode( newNode ){
         if (newNode == null){
             return this;
@@ -331,7 +332,6 @@ class BinarySearchTree {
         } 
     }
 
-    // TODO this function isn't working yet
     removeValue(value){
         if(this.isEmpty()) { return false; }
         if (this.root.data == value){
@@ -351,10 +351,10 @@ class BinarySearchTree {
         if (!runner){
             return false;
         }
-        if (parentNode.data > runner.data){
+        if (parentNode.data >= runner.data){
             parentNode.left = runner.left;
         } else {
-            parentNode.right = runner.right;
+            parentNode.right = runner.left;
         }
         if (runner.right){
             this.insertNode(runner.right);
@@ -366,11 +366,21 @@ class BinarySearchTree {
         if(this.isEmpty()) { return; }
         if (this.root.right){
             let leftNode = this.root.left;
-            this.root == this.root.right;
+            this.root = this.root.right;
             this.insertNode(leftNode);
         } else {
             this.root = this.root.left;
         }
+    }
+
+    removeAllValues(value){
+        let checkAgain = true;
+        let numberOfValuesFound = -1;
+        while(checkAgain){
+            checkAgain = this.removeValue(value);
+            numberOfValuesFound += 1;
+        }
+        return numberOfValuesFound;
     }
 
     findDuplicates(){
@@ -390,13 +400,13 @@ class BinarySearchTree {
 
 
 var BST = new BinarySearchTree();
-for (let i = 0; i <10; i++){
+for (let i = 0; i <15; i++){
     BST.insert(Math.floor(Math.random() * 10) + 1); 
 }
 BST.display();
-console.log(BST.removeValue(5))
-console.log(BST.toArrayInOrder());
+console.log(BST.removeAllValues(5));
 BST.display();
+//BST.toArrayInOrder();
 
 
 
