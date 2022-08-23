@@ -15,7 +15,7 @@
 	<div class="container p-3">
 		<div class="navbar">
 			<nav>
-				<h1>Login and Registration</h1>
+				<h1>Welcome, House Hunter!</h1>
 			</nav>
 		</div>
 		

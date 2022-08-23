@@ -51,6 +51,12 @@ public class User {
     @Size(min=8, max=72, message="Confirm Password must be between 8 and 72 characters")
     private String confirm;
     
+    @OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private List<Listing> listings;
+    
+    @OneToMany(mappedBy="noteUser", fetch=FetchType.LAZY)
+    private List<Note> notes;
+    
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;

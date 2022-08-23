@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isErrorPage="true" %> 
 
 <!DOCTYPE html>
@@ -23,10 +24,37 @@
 		</div>
 		
 		<div class="row">
-			<div class="col col-8">
-				
-				<p>Here it begins ... </p>
+			<div class="col col-12">
 			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<td>Address</td>
+							<td>Listed On</td>
+							<td>Added By</td>
+							<td>Price</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="listing" items="${ listings }">
+							<tr>
+								<td>
+									<a href="/listings/${ listing.id }/show">
+										<c:out value="${ listing.address }"/>
+									</a>
+								</td>
+								<td><fmt:formatDate type="date" value="${ listing.listingDate }"/></td>
+								<td><c:out value="${ listing.user.userName }"/></td>
+								<td><fmt:formatNumber type="CURRENCY" value="${ listing.price }"/></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				
+				</table>
+				 
+				
+				<a href="listings/new" class="btn btn-primary mt-3">Add Listing</a>
+		
 			</div>
 		</div>
 	</div>
