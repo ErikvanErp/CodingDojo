@@ -12,24 +12,16 @@ class QueueNode {
       this.size = 0;
     }
   
-    /**
-     * - Time: O(1) constant.
-     * - Space: O(1) constant.
-     * @returns {boolean} Indicates if the list is empty.
-     */
     isEmpty() {
-        return (this.size == 0) ? true : false;
+        return !this.size;
     }
   
-    /**
-     * Adds a given val to the back of the queue.
-     * - Time: O(1) constant.
-     * - Space: O(1) constant.
-     * @param {any} val
-     * @returns {number} The new size of the queue.
-     */
     enqueue(value) { 
         let newNode = new QueueNode(value);
+        return this.enqueueNode(newNode);
+    }
+
+    enqueueNode(newNode){
         if (this.isEmpty()){
             this.head = newNode;
             this.tail = newNode;
@@ -41,11 +33,6 @@ class QueueNode {
         return this.size;
     }
   
-    /**
-     * - Time: O(1) constant.
-     * - Space: O(1) constant.
-     * @returns {any} The removed item.
-     */
     dequeue() {
         if (this.isEmpty()){
             return null;
@@ -59,54 +46,69 @@ class QueueNode {
         return oldHead;
     }
   
-    /**
-     * Retrieves the first item without removing it.
-     * - Time: O(1) constant.
-     * - Space: O(1) constant.
-     * @returns {any} The first item.
-     */
     front() { 
         return this.head.data;
     }
   
-    /**
-     * Determines if the given item is in the queue.
-     * - Time: O(n) linear.
-     * - Space: O(1) constant.
-     * @param {any} searchVal
-     * @returns {boolean}
-     */
     contains(searchValue) { 
-        if (this.isEmpty()){
-            return false;
-        }
         let runner = this.head;
         while(runner && runner.data != searchValue){
             runner = runner.next;
         }
-        return runner ? true : false;
+        return !!runner;
     }
   
-    /**
-     * Enqueues each of the given items.
-     * - Time: O(n) linear since enqueue is O(1), n = vals.length.
-     * - Space: O(1) constant.
-     * @param {Array<any>} vals
-     */
     seed(values) {
         for(let i in values){
             this.enqueue(values[i]);
         } 
     }
+
+    equals(q2){
+        if (this.size != q2.size){
+            return false;
+        }
+        var runner1 = this.head;
+        var runner2 = q2.head;
+        for(let i = 0; i < this.size; i++){
+            if (runner1.data != runner2.data){
+                return false;
+            }
+            runner1 = runner1.next;
+            runner2 = runner2.next;
+        }
+        return true;
+    }
+
+    findIntersection(q2){
+        if (this.isEmpty() || q2.isEmpty()){
+            return null;
+        }
+        var runner1 = this.head;
+        while(runner1){
+            var runner2 = q2.head;
+            while(runner2){
+                if(runner1 == runner2){
+                    return runner1;
+                }
+                runner2 = runner2.next;
+            }
+            runner1 = runner1.next;
+        }
+        return null;
+    }
   }
 
 
-  Q1 = new Queue();
-  Q1.seed([1,2, 3, 4]);
+  let Q1 = new Queue();
+  Q1.seed([1, 2, 3, 4]);
+  let Q2 = new Queue();
+  Q2.seed([3, 4, 5]);
+  let node =  new QueueNode(7); 
+  Q1.enqueueNode(node);
+  Q2.enqueueNode(node);
+  Q1.seed([9,10,12]);
   console.log(Q1.size);
-  console.log(Q1.contains(1));
-  console.log(Q1.contains(2));
-  console.log(Q1.contains(3));
-  console.log(Q1.contains(4));
-  console.log(Q1.contains(5));
-  console.log(Q1);
+  console.log(Q2.size);
+  console.log(Q1.findIntersection(Q2));
+  
