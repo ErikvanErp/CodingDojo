@@ -22,13 +22,17 @@ class SinglyLinkedList {
   
     insertAtBack(data) {
       let newNode = new ListNode(data);
+      this.insertNodeAtBack(newNode);
+    }
+    
+    insertNodeAtBack(node){
       if (this.isEmpty()){
-        this.head = newNode; 
+        this.head = node; 
       }
       else{
         let listnode = this.head;
         while(listnode.next){ listnode = listnode.next; }
-        listnode.next = newNode;
+        listnode.next = node;
       }
     }
 
@@ -254,17 +258,54 @@ class SinglyLinkedList {
     }
     return this.recursiveMax(runner.next, maxNode);
   }
+
+  reverse() {
+    if(this.isEmpty() || !this.head.next){
+        this.display()
+        return this
+    }//Edge cases of empty and 1 node
+    var runner = this.head
+    var stepDad;
+    let nodeHolder = runner.next
+    runner.next = null
+    while(nodeHolder){
+        stepDad = nodeHolder
+        nodeHolder = nodeHolder.next
+        stepDad.next = runner
+        runner = stepDad
+    }
+    this.head = runner
+    this.display()
+    return this
+}
+
+  hasLoop(){
+    if(this.isEmpty() || !(this.head.next)){ return false }
+
+    let singleRunner = this.head;
+    let doubleRunner = this.head.next;
+
+    while(singleRunner.next && doubleRunner.next && doubleRunner.next.next){
+        singleRunner = singleRunner.next;
+        doubleRunner = doubleRunner.next.next;
+
+        if(singleRunner === doubleRunner){ return true }
+    }
+    return false;
+  }
 }
 
 var list = new SinglyLinkedList();
-// list.insertAtBackRecursive(11);
-// list.display();
 
+let n1 = new ListNode(1);
+let n2 = new ListNode(2);
+let n3 = new ListNode(3);
+let n4 = new ListNode(4);
 
-list.seedFromArray([]);
-list.display();
-console.log("****************")
-let newList = list.splitOnVal(1);
-list.display();
-console.log("****************")
-newList.display();
+list.insertNodeAtBack(n1);
+list.insertNodeAtBack(n2);
+list.insertNodeAtBack(n3);
+list.insertNodeAtBack(n4);
+list.insertNodeAtBack(n2);
+//list.display();
+console.log(list.hasLoop());
