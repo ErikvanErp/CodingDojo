@@ -1,3 +1,6 @@
+// rewrite the code to show the effect of hoisting
+// predict the output
+
 // console.log(hello);                                   
 // var hello = 'world';                                 
 
