@@ -1,11 +1,11 @@
 class Ninja {
-    constructor(name, health){
+    constructor(name, health, speed = 3, strength = 3){
         this.name = name;
         this.health = health;
-        this.speed = 3;
-        this.strength = 3;
+        this.speed = speed;
+        this.strength = strength;
     }
-
+    
     sayName() {
         console.log(this.name);        
     }
@@ -19,9 +19,7 @@ class Ninja {
 
 class Sensei extends Ninja{
     constructor(name){
-        super(name, 200);
-        super.speed = 10;
-        super.strength = 10;
+        super(name, 200, 10, 10);
         this.wisdom = 10;
     }
 
