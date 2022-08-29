@@ -14,6 +14,9 @@ function bubbleSort(arr){
                 temp = arr[i];
                 arr[i] = arr[i+1];
                 arr[i+1] = temp;
+// while the code below does the same thing
+// it may be less efficient under the hood
+//                [arr[i], arr[i+1]] = [arr[i+1], arr[i]];
             }
         }
     }
