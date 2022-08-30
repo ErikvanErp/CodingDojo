@@ -1,22 +1,7 @@
-class Deck {
-    constructor() {
-      const suits = ['Diamond', 'Heart', 'Spade', 'Club'];
-      const faces = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
-      const deck = [];
-      for (const suit of suits) {
-        for (const face of faces) {
-          deck.push(this.createCard(suit, face));
-        }
-      }
-      this.deck = deck;
-    }
-
-    createCard(suit, face){
-        return {"suit": suit, "face": face};
-    }
-  }
-
-  const deck = new Deck();
-  console.log(deck);
-  
+nums = [1, 2, 3, 4, 5, 6, 7]
+console.log(nums.sort((a,b) => a-b));  
+console.log(nums.map( (x, i) => x**(i+1) ));  
+console.log(nums.map( (x,i,arr) => x + arr[i+1])
+                .filter((x,i,arr) => !(i == arr.length - 1)))
+console.log(nums.reduce((x,y) => x * y, 2))
   
