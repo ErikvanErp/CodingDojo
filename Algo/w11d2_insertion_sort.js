@@ -1,4 +1,4 @@
-function insertionSort(array){
+const insertionSort = (array) => {
     for(let i = 0; i < array.length - 1; i++){
         let j = i + 1;
         while(j > 0 && array[j] < array[j -1]){
