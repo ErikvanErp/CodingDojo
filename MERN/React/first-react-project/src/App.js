@@ -1,7 +1,7 @@
 import './App.css';
-
-import React from 'react';
+import CompWithChildren from './components/CompWithChildren';
 import PersonCard from './components/PersonCard';
+import Switch from './components/Switch';
 
 function App() {
     return (
