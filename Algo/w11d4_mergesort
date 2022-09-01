@@ -2,24 +2,19 @@ function merge(left, right){
     let newArray = [];
     let i = 0;
     let j = 0;
-    while (i < left.length && j < right.length){
-        if (left[i] < right[j]){
+    while (i < left.length || j < right.length){
+        if (!left[i]){
+            newArray.push(right[j]);
+            j++;
+        } else if (!right[j]){
+            newArray.push(left[i]);
+            i++;
+        } else if (left[i] < right[j]){
             newArray.push(left[i]);
             i++;
         } else {
             newArray.push(right[j]);
             j++;
-        }
-    }
-    if (i == left.length){
-        while (j < right.length) { 
-            newArray.push(right[j]);
-            j++;
-        }
-    } else {
-        while (i < left.length) { 
-            newArray.push(left[i]);
-            i++;
         }
     }
     return newArray;
