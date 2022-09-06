@@ -1,10 +1,12 @@
 import './App.css';
-import TimeDisplay from './components/TimeDisplay';
+import Pokemon from './Pokemon';
 
 function App() {
   return (
     <div className="App">
-      <TimeDisplay />
+      <div className='container'>
+        <Pokemon />
+      </div>
     </div>
   );
 }

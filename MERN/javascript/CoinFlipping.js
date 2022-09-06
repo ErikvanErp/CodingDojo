@@ -1,6 +1,6 @@
 function tossCoin() {
-        return Math.random() > 0.5 ? 1 : 0;
-    }
+    return Math.random() > 0.5 ? 1 : 0;
+}
 
 function HeadsSync() {
     let headsCount = 0;
