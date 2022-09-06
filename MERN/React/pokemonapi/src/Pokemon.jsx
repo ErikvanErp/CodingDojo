@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Pokemon = () => {
     const [names, setNames] = useState([]);
 
     const fetchPokemon = () => {
-        console.log("click click");
-        fetch("https://pokeapi.co/api/v2/pokemon")
-            .then(response => response.json())
-            .then(response => setNames(response.results.map( pokemon => pokemon.name )))
+        axios.get("https://pokeapi.co/api/v2/pokemon")
+             .then(response => setNames(response.data.results.map( pokemon => pokemon.name )))
+        // fetch("https://pokeapi.co/api/v2/pokemon")
+        //     .then(response => response.json())
+        //     .then(response => setNames(response.results.map( pokemon => pokemon.name )))
             .catch(err => console.log(err));
     }
 
@@ -18,10 +20,12 @@ const Pokemon = () => {
     return (
         <>
             <div className='row'>
-                <button onClick={ fetchPokemon } className='btn btn-primary my-3' style={{width:"200px"}}>Fetch Pokemon</button>
-                <ul>
-                    { pokemons }
-                </ul>
+                <div className='col'>
+                    <button onClick={ fetchPokemon } className='btn btn-primary my-3' style={{width:"200px"}}>Fetch Pokemon</button>
+                    <ul>
+                        { pokemons }
+                    </ul>
+                </div>
             </div>
         </>
     );
