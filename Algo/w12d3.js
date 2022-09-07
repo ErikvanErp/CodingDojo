@@ -79,7 +79,8 @@ const expected3 = null;
 
 function findByIdAndUpdate(id, updatedVals, collection) {
     const objects = collection.filter( (item) => item.id == id);
-    return objects.length == 0 ? null : {...objects[0], ...updatedVals};
+//    return objects.length == 0 ? null : {...objects[0], ...updatedVals};
+    return objects.length == 0 ? null : {...objects[0], ...Object.fromEntries(Object.entries(updatedVals).filter(([key, val]) => key in objects[0] )) };
 }
 
 console.log(findByIdAndUpdate(id2, updateData2, students));
