@@ -8,32 +8,24 @@ function App() {
   const [resource, setResource] = useState("people");
   const [id, setId] = useState("");
   
-  const resources = ["people", "planets"];
-  const resourceOptions = resources.map((item, idx) => 
-    <option key={ idx } value={item}>{ item }</option>
-  ); 
-
   const handleResourceChange = (resource) => {
     setResource(resource);
   }
-
+  
   const handleIdChange = (id) => {
     setId(id);
   }
-
+  
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/${ resource }/${ id }`);
   }
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (resource == "people"){
-  //     navigate(`/people/${ id }`);
-  //   } else {
-  //     navigate(`/planets/${ id }`);
-  //   }
-  // }
+  
+  const resources = ["people", "planets"];
+  const resourceOptions = resources.map((item, idx) => 
+    <option key={ idx } value={item}>{ item }</option>
+  ); 
 
   return (
     <div className="App">
@@ -47,7 +39,7 @@ function App() {
               <select value={ resource } onChange={ (e) => handleResourceChange(e.target.value) } className="form-select">
                 { resourceOptions }
               </select>
-              <label htmlFor='num'>ID</label>
+              <label htmlFor="num">ID</label>
               <input type="text" onChange={ (e) => handleIdChange(e.target.value)} value={ id } className='form-control'></input>
               <button className='btn btn-primary mt-3'>Search</button>
             </form>
