@@ -1,0 +1,803 @@
+
+test> use mydb
+switched to db mydb
+mydb> db.createCollection("students")
+{ ok: 1 }
+mydb> db.students.insert({name: "E", home_state: "NH", lucky_number: 34, bday: {mm: 12, dd: 4, yyyy: 1962}})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("631b514215fd87ed14641f63") }
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b514215fd87ed14641f63"),
+    name: 'E',
+    home_state: 'NH',
+    lucky_number: 34,
+    bday: { mm: 12, dd: 4, yyyy: 1962 }
+  }
+]
+mydb> db.students.insert({name: "S", home_state: "Ontario", lucky_number: 1, bday: {mm: 12, dd: 28, yyyy: 1989}})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("631b516f15fd87ed14641f64") }
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b514215fd87ed14641f63"),
+    name: 'E',
+    home_state: 'NH',
+    lucky_number: 34,
+    bday: { mm: 12, dd: 4, yyyy: 1962 }
+  },
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 }
+  }
+]
+mydb> db.students.insert({name: "R", home_state: "NH", lucky_number: 7, bday: {mm: 2, dd: 5, yyyy: 2021}})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("631b519c15fd87ed14641f65") }
+}
+mydb> db.students.insert({name: "M", home_state: "Netherlands", lucky_number: 14, bday: {mm: 9, dd: 10, yyyy: 1960}})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("631b51bb15fd87ed14641f66") }
+}
+mydb> db.students.insert({name: "P", home_state: "Brabant", lucky_number: 5, bday: {mm: 12, dd: 19, yyyy: 1939}})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("631b51e415fd87ed14641f67") }
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b514215fd87ed14641f63"),
+    name: 'E',
+    home_state: 'NH',
+    lucky_number: 34,
+    bday: { mm: 12, dd: 4, yyyy: 1962 }
+  },
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 }
+  },
+  {
+    _id: ObjectId("631b519c15fd87ed14641f65"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 }
+  },
+  {
+    _id: ObjectId("631b51bb15fd87ed14641f66"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 }
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 }
+  }
+]
+mydb> db.students.find({$or: [{home_state: "NH"}, {home_state: "Netherlands}]})
+Uncaught:
+SyntaxError: Unterminated string constant. (1:57)
+
+> 1 | db.students.find({$or: [{home_state: "NH"}, {home_state: "Netherlands}]})
+    |                                                          ^
+  2 |
+
+mydb> db.students.find({$or: [{home_state: "NH"}, {home_state: "Netherlands"}]})
+[
+  {
+    _id: ObjectId("631b514215fd87ed14641f63"),
+    name: 'E',
+    home_state: 'NH',
+    lucky_number: 34,
+    bday: { mm: 12, dd: 4, yyyy: 1962 }
+  },
+  {
+    _id: ObjectId("631b519c15fd87ed14641f65"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 }
+  },
+  {
+    _id: ObjectId("631b51bb15fd87ed14641f66"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 }
+  }
+]
+mydb> db.students.find({luck_number: {$gt: 3}})
+
+mydb> db.students.find({lucky_number: {$gt: 3}})
+[
+  {
+    _id: ObjectId("631b514215fd87ed14641f63"),
+    name: 'E',
+    home_state: 'NH',
+    lucky_number: 34,
+    bday: { mm: 12, dd: 4, yyyy: 1962 }
+  },
+  {
+    _id: ObjectId("631b519c15fd87ed14641f65"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 }
+  },
+  {
+    _id: ObjectId("631b51bb15fd87ed14641f66"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 }
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 }
+  }
+]
+mydb> db.students.find({lucky_number: {$lte: 10}})
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 }
+  },
+  {
+    _id: ObjectId("631b519c15fd87ed14641f65"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 }
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 }
+  }
+]
+mydb> db.students.find($and: [{lucky_number: {$gte: 1}}, {lucky_number: {$lte: 9}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:21)
+
+> 1 | db.students.find($and: [{lucky_number: {$gte: 1}}, {lucky_number: {$lte: 9}})
+    |                      ^
+  2 |
+
+mydb> db.students.find({$and: [{lucky_number: {$gte: 1}}, {lucky_number: {$lte: 9}}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:77)
+
+> 1 | db.students.find({$and: [{lucky_number: {$gte: 1}}, {lucky_number: {$lte: 9}}})
+    |                                                                              ^
+  2 |
+
+mydb> db.students.find({$and: [{lucky_number: {$gte: 1}}, {lucky_number: {$lte: 9}}]}) 
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 }
+  },
+  {
+    _id: ObjectId("631b519c15fd87ed14641f65"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 }
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 }
+  }
+]
+mydb> db.students.updateMany({interests: ['coding', 'brunch', 'MongoDB']})
+MongoInvalidArgumentError: Update document requires atomic operators
+mydb> db.students.updateMany({}, {$set: {interests: ['coding', 'brunch', 'MongoDB']}}) 
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b514215fd87ed14641f63"),
+    name: 'E',
+    home_state: 'NH',
+    lucky_number: 34,
+    bday: { mm: 12, dd: 4, yyyy: 1962 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b519c15fd87ed14641f65"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51bb15fd87ed14641f66"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  }
+]
+mydb> db.students.updateOne({name: "E"}, {$push: {interests: ['Python']}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b514215fd87ed14641f63"),
+    name: 'E',
+    home_state: 'NH',
+    lucky_number: 34,
+    bday: { mm: 12, dd: 4, yyyy: 1962 },
+    interests: [ 'coding', 'brunch', 'MongoDB', [ 'Python' ] ]
+  },
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b519c15fd87ed14641f65"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51bb15fd87ed14641f66"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  }
+]
+mydb> db.students.updateOne({name: "E"}, {$pop: {interests: 1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b514215fd87ed14641f63"),
+    name: 'E',
+    home_state: 'NH',
+    lucky_number: 34,
+    bday: { mm: 12, dd: 4, yyyy: 1962 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b519c15fd87ed14641f65"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51bb15fd87ed14641f66"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  }
+]
+mydb> db.students.updateOne({name: "E"}, {$push: {interests: 'Python'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b514215fd87ed14641f63"),
+    name: 'E',
+    home_state: 'NH',
+    lucky_number: 34,
+    bday: { mm: 12, dd: 4, yyyy: 1962 },
+    interests: [ 'coding', 'brunch', 'MongoDB', 'Python' ]
+  },
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b519c15fd87ed14641f65"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51bb15fd87ed14641f66"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  }
+]
+mydb> db.students.remove({home_state: "NH"}, true)
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b519c15fd87ed14641f65"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51bb15fd87ed14641f66"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  }
+]
+mydb> db.students.deleteMany({home_state: "NH"})
+{ acknowledged: true, deletedCount: 1 }
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51bb15fd87ed14641f66"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  }
+]
+mydb> db.students.deleteOne({name: "M"})
+{ acknowledged: true, deletedCount: 1 }
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b51e415fd87ed14641f67"),
+    name: 'P',
+    home_state: 'Brabant',
+    lucky_number: 5,
+    bday: { mm: 12, dd: 19, yyyy: 1939 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  }
+]
+mydb> db.students.deleteOne({{lucky_number: {$gt: 3}})
+Uncaught:
+SyntaxError: Unexpected token (1:23)
+
+> 1 | db.students.deleteOne({{lucky_number: {$gt: 3}})
+    |                        ^
+  2 |
+
+mydb> db.students.deleteOne({lucky_number: {$gt: 3}})
+{ acknowledged: true, deletedCount: 1 }
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  }
+]
+mydb> db.students.insert({name: "M", home_state: "Netherlands", lucky_number: 14, bday: {mm: 9, dd: 10, yyyy: 1960}})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("631b5b1215fd87ed14641f68") }
+}
+mydb> db.students.insert({name: "R", home_state: "NH", lucky_number: 7, bday: {mm: 2, dd: 5, yyyy: 2021}})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("631b5b1915fd87ed14641f69") }
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ]
+  },
+  {
+    _id: ObjectId("631b5b1215fd87ed14641f68"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 }
+  },
+  {
+    _id: ObjectId("631b5b1915fd87ed14641f69"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 }
+  }
+]
+mydb> db.students.updateMany({}, {number_of_belts: 0})
+MongoInvalidArgumentError: Update document requires atomic operators
+mydb> db.students.updateMany({}, {$set: {number_of_belts: 0}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ],
+    number_of_belts: 0
+  },
+  {
+    _id: ObjectId("631b5b1215fd87ed14641f68"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    number_of_belts: 0
+  },
+  {
+    _id: ObjectId("631b5b1915fd87ed14641f69"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    number_of_belts: 0
+  }
+]
+mydb> db.students.updateMany({home_state: 'NH'}, {$inc: {number_of_belts: 1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ],
+    number_of_belts: 0
+  },
+  {
+    _id: ObjectId("631b5b1215fd87ed14641f68"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    number_of_belts: 0
+  },
+  {
+    _id: ObjectId("631b5b1915fd87ed14641f69"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    number_of_belts: 1
+  }
+]
+mydb> db.students.updateMany({$rename: {'number_of_belts': 'belts_earned'}})
+MongoInvalidArgumentError: Update document requires atomic operators
+mydb> db.students.updateMany({}, {$rename: {'number_of_belts': 'belts_earned'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    lucky_number: 1,
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ],
+    belts_earned: 0
+  },
+  {
+    _id: ObjectId("631b5b1215fd87ed14641f68"),
+    name: 'M',
+    home_state: 'Netherlands',
+    lucky_number: 14,
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    belts_earned: 0
+  },
+  {
+    _id: ObjectId("631b5b1915fd87ed14641f69"),
+    name: 'R',
+    home_state: 'NH',
+    lucky_number: 7,
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    belts_earned: 1
+  }
+]
+mydb> db.students.updateMany({$unset: {"lucky_number":""}})
+MongoInvalidArgumentError: Update document requires atomic operators
+mydb> db.students.updateMany({}, {$unset: {"lucky_number":""}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ],
+    belts_earned: 0
+  },
+  {
+    _id: ObjectId("631b5b1215fd87ed14641f68"),
+    name: 'M',
+    home_state: 'Netherlands',
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    belts_earned: 0
+  },
+  {
+    _id: ObjectId("631b5b1915fd87ed14641f69"),
+    name: 'R',
+    home_state: 'NH',
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    belts_earned: 1
+  }
+]
+mydb> db.students.updateMany({}, {$currentDate: {'updated_on': true}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ],
+    belts_earned: 0,
+    updated_on: ISODate("2022-09-09T15:44:01.712Z")
+  },
+  {
+    _id: ObjectId("631b5b1215fd87ed14641f68"),
+    name: 'M',
+    home_state: 'Netherlands',
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    belts_earned: 0,
+    updated_on: ISODate("2022-09-09T15:44:01.712Z")
+  },
+  {
+    _id: ObjectId("631b5b1915fd87ed14641f69"),
+    name: 'R',
+    home_state: 'NH',
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    belts_earned: 1,
+    updated_on: ISODate("2022-09-09T15:44:01.712Z")
+  }
+]
+mydb> db.students.updateMany({}, {$currentDate: {'updated_on': {{$type: "timestamp"}}})
+Uncaught:
+SyntaxError: Unexpected token (1:58)
+
+> 1 | db.students.updateMany({}, {$currentDate: {'updated_on': {{$type: "timestamp"}}})
+    |                                                           ^
+  2 |
+
+mydb> db.students.updateMany({}, {$currentDate: {'updated_on': {$type: "timestamp"}}}) 
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+mydb> db.students.find()
+[
+  {
+    _id: ObjectId("631b516f15fd87ed14641f64"),
+    name: 'S',
+    home_state: 'Ontario',
+    bday: { mm: 12, dd: 28, yyyy: 1989 },
+    interests: [ 'coding', 'brunch', 'MongoDB' ],
+    belts_earned: 0,
+    updated_on: Timestamp({ t: 1662738304, i: 1 })
+  },
+  {
+    _id: ObjectId("631b5b1215fd87ed14641f68"),
+    name: 'M',
+    home_state: 'Netherlands',
+    bday: { mm: 9, dd: 10, yyyy: 1960 },
+    belts_earned: 0,
+    updated_on: Timestamp({ t: 1662738304, i: 2 })
+  },
+  {
+    _id: ObjectId("631b5b1915fd87ed14641f69"),
+    name: 'R',
+    home_state: 'NH',
+    bday: { mm: 2, dd: 5, yyyy: 2021 },
+    belts_earned: 1,
+    updated_on: Timestamp({ t: 1662738304, i: 3 })
+  }
+]
+mydb> test
