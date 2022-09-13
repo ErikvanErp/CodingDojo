@@ -1,29 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-const ProductForm = (props) => {
+const Edit = (props) => {
+    const { id } = useParams();
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
     const [desc, setDesc] = useState("");
 
+    useEffect(()=>{
+        axios.get("http://localhost:8000/api/product/" + id)
+            .then(res => {
+                setTitle(res.data.Title);
+                setPrice(res.data.Price);
+                setDesc(res.data.Description);
+            })
+    }, [])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8000/api/product", 
+        axios.put("http://localhost:8000/api/product/" + id, 
         {
             Title: title, Price: price, Description: desc
         })
-            .then(res => {
-                console.log(res);
-                setTitle("");
-                setPrice(0);
-                setDesc("");
-            })
+            .then(res => console.log(res))
             .catch(err => console.log(err));
     }
 
     return(
         <>
-            <h2>Add a New Product</h2>
+            <h2>Edit a Product</h2>
             <form onSubmit={ handleSubmit }>
                 <p>
                     <label>Title: </label>
@@ -37,11 +43,10 @@ const ProductForm = (props) => {
                     <label>Description: </label>
                     <input type="text" onChange={ e => setDesc(e.target.value)} value={ desc }/> 
                 </p>
-                <button type="submit">Add</button>
+                <button type="submit">Update</button>
             </form>
-
         </>
     )
 }
 
-export default ProductForm;
+export default Edit;

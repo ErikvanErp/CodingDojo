@@ -7,6 +7,10 @@ const Main = (props) => {
     const [products, setProducts] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
 
+    const removeFromDOM = (id) => {
+        setProducts(products.filter(product => product._id != id));
+    }
+
     useEffect(()=>{
         setIsLoaded(false);
         axios.get('http://localhost:8000/api/products')
@@ -23,7 +27,7 @@ const Main = (props) => {
             <hr/>
             {
                 isLoaded ? 
-                <ProductList products={ products }/> : 
+                <ProductList products={ products } removeFromDOM={ removeFromDOM }/> : 
                 <p></p>
             }
         </div>
