@@ -1,51 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import ProductForm from '../components/ProductForm';
 
 const Edit = (props) => {
     const { id } = useParams();
-    const [title, setTitle] = useState("");
-    const [price, setPrice] = useState(0);
-    const [desc, setDesc] = useState("");
+    const [product, setProduct] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(()=>{
         axios.get("http://localhost:8000/api/product/" + id)
             .then(res => {
-                setTitle(res.data.Title);
-                setPrice(res.data.Price);
-                setDesc(res.data.Description);
+                console.log(res.data);
+                setProduct(res.data);
+                setIsLoaded(true);
             })
+            .catch(err => console.log(err));
     }, [])
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.put("http://localhost:8000/api/product/" + id, 
-        {
-            Title: title, Price: price, Description: desc
-        })
+    const updateProduct = product => {
+        axios.put("http://localhost:8000/api/product/" + id, product)
             .then(res => console.log(res))
             .catch(err => console.log(err));
     }
 
     return(
+        isLoaded ?
         <>
             <h2>Edit a Product</h2>
-            <form onSubmit={ handleSubmit }>
-                <p>
-                    <label>Title: </label>
-                    <input type="text" onChange={ e => setTitle(e.target.value) } value={ title }/> 
-                </p>
-                <p>
-                    <label>Price: </label>
-                    <input type="number" onChange={ e => setPrice(e.target.value )} value={ price }/> 
-                </p>
-                <p>
-                    <label>Description: </label>
-                    <input type="text" onChange={ e => setDesc(e.target.value)} value={ desc }/> 
-                </p>
-                <button type="submit">Update</button>
-            </form>
-        </>
+            <ProductForm initialValues={ product } onSubmitAction={ updateProduct }/>
+        </> :
+        <p></p>
     )
 }
 

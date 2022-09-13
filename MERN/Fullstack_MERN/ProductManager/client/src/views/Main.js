@@ -21,9 +21,22 @@ const Main = (props) => {
             .catch( err => console.log("Error fetching products: ", err));
     }, []);
 
+    const initialValues = {
+        Title : "",
+        Price: 0,
+        Description: ""
+    };
+
+    const postNewProduct = product => {
+        axios.post("http://localhost:8000/api/product", product)
+            .then(res => setProducts([...products, res.data]))
+            .catch(err => console.log(err));
+    }
+
     return (
         <div>
-            <ProductForm />
+            <h2>Add a New Product</h2>
+            <ProductForm initialValues = { initialValues } onSubmitAction = { postNewProduct }/>
             <hr/>
             {
                 isLoaded ? 
