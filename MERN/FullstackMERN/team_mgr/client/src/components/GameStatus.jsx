@@ -17,10 +17,6 @@ const GameStatus = (props) => {
             .catch(err => console.log(err));
     }, []);
 
-    const removeFromDOM = (id) => {
-        setPlayers(players.filter(p => p._id !== id));
-    }  
-
     const playerList = players.map( (player, idx) => 
         <tr key={ idx }>
             <td>{ player.name }</td>

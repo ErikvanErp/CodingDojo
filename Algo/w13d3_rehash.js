@@ -42,8 +42,9 @@ function frequenciesToHash(f){
     return output;
 }
 
-function frequenciesToHash2(f){
-    return Object.entries(f).sort().reduce((prev, [key, val]) => prev + key + val, "");
+function frequenciesToHash_2(f){
+    return Object.entries(f).sort()
+                .reduce((hash, [key, val]) => hash + key + val, "");
 }
 
 console.log(rehash(str1));
