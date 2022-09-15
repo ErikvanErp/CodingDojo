@@ -7,7 +7,7 @@ const DeleteAuthorButton = (props) => {
     const deleteAuthor = () => {
         axios.delete("http://localhost:8000/api/authors/" + authorId)
             .then(res => successAction())
-            .catch(err => console.timeLog(err));
+            .catch(err => console.log(err));
     }
 
     return (

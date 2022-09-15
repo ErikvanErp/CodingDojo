@@ -13,10 +13,9 @@ const AuthorForm = (props) => {
         
     return (
         <div>
-           
             { 
                 "name" in errors ?
-                <p style={{color:"red"}}>{ errors.name.message} </p> :
+                <p style={{color:"red"}}>{ errors.name.message }</p> :
                 <p></p>
             }
             <form onSubmit={ handleSubmit }>
